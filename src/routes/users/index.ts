@@ -1,7 +1,10 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
+import { createUserController } from "../../controllers";
 
 const usersRouter = Router();
 
-usersRouter.get("/", (_, res) => res.json({ message: "OK" }));
+usersRouter.post("/", (req: Request, res: Response) => {
+  createUserController.handle(req, res);
+});
 
 export { usersRouter };
