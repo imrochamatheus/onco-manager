@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // provider = "sqlite"
+  // url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  admin Boolean @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Schedule {
+  id String @id @default(uuid())
+  id_patient String
+  id_protocol BigInt
+  cicle_number Int 
+  date DateTime 
+
+  @@map("schedule")
+}
+
+model Seat {
+  id Int @id @db.SmallInt @default(autoincrement())
+  seat_number Int @db.SmallInt
+
+  @@map("seat")
+}
+
+model Patient {
+  id String @id @default(uuid())
+  
+  name String @db.VarChar(255)
+  medical_records_number Int 
+  contact String @db.VarChar(255)
+
+  @@map("patient")
+}
+
+enum Access {
+  master
+  staff
+  operator
+}
+
+enum Occupation {
+  manager
+  secretary
+  nurse
+  nursing_technician
+}
+
+model Professionals {
+  id String @id @default(uuid())
+  
+  full_name String @db.VarChar(255)
+  
+  access_level Access @default(operator)
+  occupation Occupation @default(nurse)
+  
+  @@map("professionals")
+}
+
+
+model RegisterSeat {
+  id String @id @default(uuid())
+
+  id_patient String
+  id_protocol String
+  id_seat String
+
+  checkin_timestamp String @db.VarChar(50)
+  checkout_timestamp String @db.VarChar(50)
+  checkin_professional String @db.VarChar(255)
+  checkout_professional String @db.VarChar(255)
+
+  notes String @db.VarChar(255)
+
+  @@map("register_seat")
+}
+
+model Protocol {
+  id BigInt @id @db.BigInt @default(autoincrement())
+  
+  volume Float @db.Real
+
+  description String @db.VarChar(255)
+  infusion_time String @db.VarChar(255)
+
+  @@map("protocol")
+}
