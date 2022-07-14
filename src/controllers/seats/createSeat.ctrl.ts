@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { CreateSeatService } from "../../services/seats/createSeat.svc";
 
 
-
 export class CreateSeatController {
 
   constructor(private createSeatService: CreateSeatService){}
@@ -16,7 +15,7 @@ export class CreateSeatController {
     return res.status(201).json({
       message: "Seat Succesfully Created",
       data: newSeat
-    })
+    });
 
   };
 }
