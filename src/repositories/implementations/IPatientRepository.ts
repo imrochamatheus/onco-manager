@@ -29,12 +29,12 @@ class PatientRepository implements IPatientRepository {
     return newPatient;
   }
 
-  public async listAllPatients(): Promise<IPatient[]> {
+  public async getAllPatients(): Promise<IPatient[]> {
     const allPatients = await this.prisma.patient.findMany();
     return allPatients;
   }
 
-  public async listPatientById({
+  public async getPatientById({
     patient_id,
   }: IPatientByIdReq): Promise<IPatient | null> {
     const patient = await this.prisma.patient.findUnique({
