@@ -1,10 +1,11 @@
 import { Request, Response, Router } from "express";
+import { createPatientCtrl } from "../../controllers/patients";
 
 const patientsRouter = Router();
 
 //create patient
 patientsRouter.post("/", (req: Request, res: Response) => {
-  // createPatientController.handle(req, res)
+  createPatientCtrl.handle(req, res);
 });
 
 //get all patients
