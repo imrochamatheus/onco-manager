@@ -13,7 +13,7 @@ export class CreateSeatController {
     const newSeat = await this.createSeatService.execute(seatData);
 
     return res.status(201).json({
-      message: "Seat Succesfully Created",
+      message: "Seat Successfully Created",
       data: newSeat
     });
 

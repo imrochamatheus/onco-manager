@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import { createSeatController, deleteSeatController, listAllSeatsController } from "../../controllers/seats";
 
 
-const seatsRouter = Router()
+const seatsRouter = Router();
 
 seatsRouter.post("/", (req: Request, res: Response) => {
   createSeatController.handle(req, res);
