@@ -5,6 +5,7 @@ import {
   deletePatientByIdCtrl,
   getAllPatientsCtrl,
   getPatientByIdCtrl,
+  patchPatientByIdCtrl,
 } from "../../controllers/patients";
 
 const patientsRouter = Router();
@@ -27,7 +28,7 @@ patientsRouter.get("/:id", (req: Request, res: Response) => {
 
 //edit patient by id
 patientsRouter.patch("/:id", (req: Request, res: Response) => {
-  // patchPatientByIdController.handle(req, res)
+  patchPatientByIdCtrl.handle(req, res);
 });
 
 //delete patient by id
