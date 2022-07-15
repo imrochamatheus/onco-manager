@@ -11,3 +11,8 @@ export interface IPatient extends IPatientCreateReq {
 export interface IPatientByIdReq {
   patient_id: string;
 }
+
+export interface IPatientPatch {
+  name?: string;
+  contact?: string;
+}
