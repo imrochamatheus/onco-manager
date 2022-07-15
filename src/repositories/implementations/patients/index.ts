@@ -48,11 +48,10 @@ class PatientRepository implements IPatientRepository {
     { patient_id }: IPatientByIdReq,
     data: IPatientCreateReq
   ): Promise<void> {
-    // await this.prisma.patient.update({
-    //   where: { id: patient_id },
-    //   data: { ...data },
-    // });
-    console.log(patient_id, data);
+    await this.prisma.patient.update({
+      where: { id: patient_id },
+      data: { ...data },
+    });
   }
 
   public async deletePatientById({
