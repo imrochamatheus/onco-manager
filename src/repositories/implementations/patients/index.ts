@@ -11,11 +11,14 @@ interface IPatientRepository {
     contact,
   }: IPatientCreateReq): Promise<IPatient>;
 
-  listPatient({ patient_id }: IPatientByIdReq): Promise<IPatient>;
-
   listAllPatients(): Promise<IPatient[]>;
 
-  patchPatientById({ patient_id }: IPatientByIdReq): Promise<void>;
+  listPatientById({ patient_id }: IPatientByIdReq): Promise<IPatient | null>;
+
+  patchPatientById(
+    { patient_id }: IPatientByIdReq,
+    data: IPatientCreateReq
+  ): Promise<void>;
 
   deletePatientById({ patient_id }: IPatientByIdReq): Promise<void>;
 }
