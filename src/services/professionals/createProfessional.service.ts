@@ -15,8 +15,6 @@ class CreateProfessionalService {
     access_level,
     occupation,
   }: IProfessionalCreate): Promise<IProfessionalDisplay | AppError> {
-
-
     const createdProfessional = await this.professionalsRepository.create({
       full_name,
       email,
@@ -24,7 +22,6 @@ class CreateProfessionalService {
       access_level,
       occupation,
     });
-
 
     return createdProfessional;
   }

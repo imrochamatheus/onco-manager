@@ -35,6 +35,12 @@ class ProfessionalRepository implements IProfessionalRepository {
 
     return professional;
   }
+
+  public async listAllProfessional(): Promise<IProfessionalDisplay[]> {
+    const professionals = await this.prisma.professionals.findMany();
+
+    return professionals;
+  }
 }
 
 export { ProfessionalRepository };

@@ -1,5 +1,8 @@
 import { Request, Response, Router } from "express";
-import { createProfessionalController } from "../../controllers/professionals";
+import {
+  createProfessionalController,
+  listAllProfessionalController,
+} from "../../controllers/professionals";
 import schemaValidation from "../../middlewares/schemaValidation.mdw";
 import professionalSchema from "../../schemas/professionals";
 
@@ -12,5 +15,9 @@ professionalsRouter.post(
     createProfessionalController.handle(req, res);
   }
 );
+
+professionalsRouter.get("/", (req: Request, res: Response) => {
+  listAllProfessionalController.handle(req, res);
+});
 
 export { professionalsRouter };
