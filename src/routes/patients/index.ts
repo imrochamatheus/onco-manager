@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 // import { PatientCtrls } from "../../controllers/patients";
 import {
   createPatientCtrl,
+  deletePatientByIdCtrl,
   getAllPatientsCtrl,
   getPatientByIdCtrl,
 } from "../../controllers/patients";
@@ -31,7 +32,7 @@ patientsRouter.patch("/:id", (req: Request, res: Response) => {
 
 //delete patient by id
 patientsRouter.delete("/:id", (req: Request, res: Response) => {
-  // deletePatientByIdController.handle(req, res)
+  deletePatientByIdCtrl.handle(req, res);
 });
 
 export { patientsRouter };
