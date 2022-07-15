@@ -11,9 +11,9 @@ interface IPatientRepository {
     contact,
   }: IPatientCreateReq): Promise<IPatient>;
 
-  listAllPatients(): Promise<IPatient[]>;
+  getAllPatients(): Promise<IPatient[]>;
 
-  listPatientById({ patient_id }: IPatientByIdReq): Promise<IPatient | null>;
+  getPatientById({ patient_id }: IPatientByIdReq): Promise<IPatient | null>;
 
   patchPatientById(
     { patient_id }: IPatientByIdReq,
