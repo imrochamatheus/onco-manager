@@ -16,5 +16,9 @@ interface IRegisterSeat extends IRegisterSeatCreate{
   id: string
 };
 
+interface IRegisterSeatDate {
+  filter_date: string
+}
 
-export { IRegisterSeatCreate, IRegisterSeat};
+
+export { IRegisterSeatCreate, IRegisterSeat, IRegisterSeatDate };
