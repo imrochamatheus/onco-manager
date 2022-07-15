@@ -1,65 +1,26 @@
-import { Patient, PrismaClient } from "@prisma/client";
 import {
-  IPatientCreateReq,
   IPatient,
   IPatientByIdReq,
+  IPatientCreateReq,
 } from "../../interfaces/patient.interface";
-import { IPatientRepository } from "./patients";
 
-class PatientRepository implements IPatientRepository {
-  prisma: PrismaClient;
-
-  constructor() {
-    this.prisma = new PrismaClient();
-  }
-
-  public async createPatient({
+interface IPatientRepository {
+  createPatient({
     name,
     medical_records_number,
     contact,
-  }: IPatientCreateReq): Promise<IPatient> {
-    const newPatient = await this.prisma.patient.create({
-      data: {
-        name,
-        medical_records_number,
-        contact,
-      },
-    });
+  }: IPatientCreateReq): Promise<IPatient>;
 
-    return newPatient;
-  }
+  getAllPatients(): Promise<IPatient[]>;
 
-  public async getAllPatients(): Promise<IPatient[]> {
-    const allPatients = await this.prisma.patient.findMany();
-    return allPatients;
-  }
+  getPatientById({ patient_id }: IPatientByIdReq): Promise<IPatient | null>;
 
-  public async getPatientById({
-    patient_id,
-  }: IPatientByIdReq): Promise<IPatient | null> {
-    const patient = await this.prisma.patient.findUnique({
-      where: { id: patient_id },
-    });
-
-    return patient;
-  }
-
-  public async patchPatientById(
+  patchPatientById(
     { patient_id }: IPatientByIdReq,
     data: IPatientCreateReq
-  ): Promise<void> {
-    // await this.prisma.patient.update({
-    //   where: { id: patient_id },
-    //   data: { ...data },
-    // });
-    console.log(patient_id, data);
-  }
+  ): Promise<void>;
 
-  public async deletePatientById({
-    patient_id,
-  }: IPatientByIdReq): Promise<void> {
-    await this.prisma.patient.delete({ where: { id: patient_id } });
-  }
+  deletePatientById({ patient_id }: IPatientByIdReq): Promise<void>;
 }
 
-export { PatientRepository };
+export { IPatientRepository };
