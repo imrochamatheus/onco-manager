@@ -1,0 +1,1 @@
+{"version":3,"file":"getAllPatients.svc.js","sourceRoot":"","sources":["../../../../src/services/patients/getAllPatients.svc.ts"],"names":[],"mappings":";;;;;;;;;;;;AAGA,MAAM,iBAAiB;IACrB,YAAoB,iBAAqC;QAArC,sBAAiB,GAAjB,iBAAiB,CAAoB;IAAG,CAAC;IAEvD,OAAO;;YACX,OAAO,MAAM,IAAI,CAAC,iBAAiB,CAAC,cAAc,EAAE,CAAC;QACvD,CAAC;KAAA;CACF;AAEQ,8CAAiB"}

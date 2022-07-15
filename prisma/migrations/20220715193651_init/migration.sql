@@ -75,6 +75,7 @@ CREATE TABLE "register_seat" (
 -- CreateTable
 CREATE TABLE "protocol" (
     "id" BIGSERIAL NOT NULL,
+    "name" VARCHAR(255) NOT NULL,
     "volume" REAL NOT NULL,
     "description" VARCHAR(255) NOT NULL,
     "infusion_time" VARCHAR(255) NOT NULL,
@@ -92,6 +93,9 @@ CREATE UNIQUE INDEX "schedule_id_protocol_key" ON "schedule"("id_protocol");
 CREATE UNIQUE INDEX "schedule_id_patient_key" ON "schedule"("id_patient");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "patient_medical_records_number_key" ON "patient"("medical_records_number");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "seat_seat_number_key" ON "seat"("seat_number");
 
 -- CreateIndex
@@ -102,6 +106,9 @@ CREATE UNIQUE INDEX "register_seat_id_patient_key" ON "register_seat"("id_patien
 
 -- CreateIndex
 CREATE UNIQUE INDEX "register_seat_id_protocol_key" ON "register_seat"("id_protocol");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "protocol_name_key" ON "protocol"("name");
 
 -- AddForeignKey
 ALTER TABLE "schedule" ADD CONSTRAINT "schedule_id_patient_fkey" FOREIGN KEY ("id_patient") REFERENCES "patient"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

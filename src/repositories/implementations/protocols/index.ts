@@ -13,7 +13,7 @@ class ProtocolsRepository implements IProtocolReposity {
     this.prisma = new PrismaClient();
   }
 
-  public async createProtocol({
+  async createProtocol({
     name,
     description,
     volume,
@@ -37,32 +37,34 @@ class ProtocolsRepository implements IProtocolReposity {
     return protocols;
   }
 
-  public async readOneProtocol(protocol_id: string): Promise<IProtocol> {
+  public async readOneProtocol(id: number): Promise<IProtocol | null> {
     const protocol = await this.prisma.protocol.findUnique({
-      where: protocol_id,
+      where: {
+        id,
+      },
     });
 
     return protocol;
   }
 
   public async updateProtocol(
-    protocol_id: string,
+    id: number,
     data: IProtocolUpdate
   ): Promise<void> {
-    
     await this.prisma.protocol.update({
-        data: data,
-        where: protocol_id
-    })
-
+      data: data,
+      where: {
+        id,
+      },
+    });
   }
 
-  public async deleteProtocol(protocol_id: string): Promise<void> {
+  public async deleteProtocol(id: number): Promise<void> {
     await this.prisma.protocol.delete({
-        where: {
-            id: protocol_id
-        }
-    })
+      where: {
+        id,
+      },
+    });
   }
 }
 

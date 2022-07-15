@@ -108,7 +108,7 @@ model RegisterSeat {
 
 model Protocol {
   id BigInt @id @db.BigInt @default(autoincrement())
-  
+  name String @db.VarChar(255) @unique
   volume Float @db.Real
 
   description String @db.VarChar(255)
