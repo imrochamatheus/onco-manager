@@ -2,13 +2,12 @@ interface ISeatCreate {
   seat_number: number;
 }
 
-interface ISeat extends ISeatCreate{
+interface ISeat extends ISeatCreate {
   id: number;
 }
 
-interface ISeatId{
+interface ISeatId {
   seat_id: number;
 }
 
-
-export { ISeatCreate, ISeat, ISeatId }
+export { ISeatCreate, ISeat, ISeatId };
