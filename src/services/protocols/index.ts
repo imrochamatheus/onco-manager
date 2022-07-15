@@ -14,6 +14,6 @@ const listAllProtocolsService = new ListAllProtocolsService(
 );
 const readOneProtocolService = new ReadProtocolService(protocolsRepository);
 const updateProtocolService = new UpdateProtocolService(protocolsRepository);
-const deleteProtocolServie = new DeleteProtocolService(protocolsRepository);
+const deleteProtocolService = new DeleteProtocolService(protocolsRepository);
 
-export { createProtocolService, listAllProtocolsService, readOneProtocolService, updateProtocolService, deleteProtocolServie}
+export { createProtocolService, listAllProtocolsService, readOneProtocolService, updateProtocolService, deleteProtocolService}

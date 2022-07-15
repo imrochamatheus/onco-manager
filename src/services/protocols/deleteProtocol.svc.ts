@@ -9,4 +9,3 @@ class DeleteProtocolService {
 }
 
 export {DeleteProtocolService}
-//oi
