@@ -7,13 +7,11 @@ class DeleteSeatService{
 
   async execute({
     seat_id
-  }: ISeatId): Promise<Boolean> {
+  }: ISeatId) {
 
     await this.seatRepository.deleteSeat({
       seat_id
     });
-
-    return true;
 
   }
 }

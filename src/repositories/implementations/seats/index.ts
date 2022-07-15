@@ -28,7 +28,7 @@ class SeatsRepository implements ISeatsRepository {
     return seats;
   }
 
-  public async deleteSeat({ seat_id }: ISeatId): Promise<Boolean> {
+  public async deleteSeat({ seat_id }: ISeatId) {
     
     await this.prisma.seat.delete({
       where: {
@@ -36,7 +36,6 @@ class SeatsRepository implements ISeatsRepository {
       },
     })
 
-    return true
   }
   
 }

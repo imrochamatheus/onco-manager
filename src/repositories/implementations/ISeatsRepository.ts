@@ -6,7 +6,7 @@ interface ISeatsRepository {
 
   listAllSeats(): Promise<ISeat[]>;
 
-  deleteSeat({ seat_id }: ISeatId): Promise<Boolean>;
+  deleteSeat({ seat_id }: ISeatId): Promise<void>;
 }
 
 export { ISeatsRepository };
