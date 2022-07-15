@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import { CreateRegisterSeatService } from "../../services/register_seat/createRegisterSeat.svc";
 
 
-
-class CreateRegisterSeatController{
+export class CreateRegisterSeatController{
 
   constructor(private createRegisterSeatService: CreateRegisterSeatService){}
 
@@ -21,5 +20,3 @@ class CreateRegisterSeatController{
   };
 };
 
-
-export { CreateRegisterSeatController };
