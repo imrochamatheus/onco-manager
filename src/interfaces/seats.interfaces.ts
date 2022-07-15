@@ -2,9 +2,13 @@ interface ISeatCreate {
   seat_number: number;
 }
 
-interface ISeatCreateResp extends ISeatCreate{
+interface ISeat extends ISeatCreate{
   id: number;
 }
 
+interface ISeatId{
+  seat_id: number;
+}
 
-export { ISeatCreate, ISeatCreateResp }
+
+export { ISeatCreate, ISeat, ISeatId }

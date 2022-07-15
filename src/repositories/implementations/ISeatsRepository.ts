@@ -1,7 +1,12 @@
-import { ISeatCreate, ISeatCreateResp } from "../../interfaces/seats.interfaces";
+import { ISeatCreate, ISeat, ISeatId } from "../../interfaces/seats.interfaces";
 
 interface ISeatsRepository {
-  create({ seat_number }: ISeatCreate): Promise<ISeatCreateResp>;
+
+  createSeat({ seat_number }: ISeatCreate): Promise<ISeat>;
+
+  listAllSeats(): Promise<ISeat[]>;
+
+  deleteSeat({ seat_id }: ISeatId): Promise<Boolean>;
 }
 
 export { ISeatsRepository };

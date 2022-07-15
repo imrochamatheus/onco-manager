@@ -1,5 +1,5 @@
 import AppError from "../../errors/AppError";
-import { ISeatCreate, ISeatCreateResp } from "../../interfaces/seats.interfaces";
+import { ISeatCreate, ISeat } from "../../interfaces/seats.interfaces";
 import { ISeatsRepository } from "../../repositories/implementations/ISeatsRepository";
 
 
@@ -10,9 +10,9 @@ class CreateSeatService{
   async execute({
     seat_number
 
-  }: ISeatCreate): Promise<ISeatCreateResp> {
+  }: ISeatCreate): Promise<ISeat> {
     
-    const createSeat = await this.seatRepository.create({
+    const createSeat = await this.seatRepository.createSeat({
       seat_number
     });
 

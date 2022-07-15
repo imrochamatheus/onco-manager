@@ -1,16 +1,18 @@
 import { PrismaClient } from "@prisma/client";
-import { ISeatCreate, ISeatCreateResp } from "../../../interfaces/seats.interfaces";
+import { ISeatCreate, ISeat, ISeatId } from "../../../interfaces/seats.interfaces";
 import { ISeatsRepository } from "../ISeatsRepository";
 
 
-
 class SeatsRepository implements ISeatsRepository {
+  prisma: PrismaClient
 
-  public async create({ seat_number }: ISeatCreate): Promise<ISeatCreateResp> {
+  constructor(){
+    this.prisma = new PrismaClient()
+  }
+
+  public async createSeat({ seat_number }: ISeatCreate): Promise<ISeat> {
     
-    const prisma = new PrismaClient();
-
-    const seat = await prisma.seat.create({
+    const seat = await this.prisma.seat.create({
       data: {
         seat_number
       }
@@ -19,7 +21,24 @@ class SeatsRepository implements ISeatsRepository {
     return seat;
   }
 
+  public async listAllSeats(): Promise<ISeat[]> {
 
+    const seats = await this.prisma.seat.findMany()
+
+    return seats;
+  }
+
+  public async deleteSeat({ seat_id }: ISeatId): Promise<Boolean> {
+    
+    await this.prisma.seat.delete({
+      where: {
+        id: seat_id,
+      },
+    })
+
+    return true
+  }
+  
 }
 
 
