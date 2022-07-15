@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ISeatCreate, ISeat } from "../../../interfaces/seats.interfaces";
+import { ISeatCreate, ISeat, ISeatId } from "../../../interfaces/seats.interfaces";
 import { ISeatsRepository } from "../ISeatsRepository";
 
 
@@ -28,7 +28,17 @@ class SeatsRepository implements ISeatsRepository {
     return seats;
   }
 
+  public async deleteSeat({ seat_id }: ISeatId): Promise<Boolean> {
+    
+    await this.prisma.seat.delete({
+      where: {
+        id: seat_id,
+      },
+    })
 
+    return true
+  }
+  
 }
 
 

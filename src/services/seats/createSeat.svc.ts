@@ -12,7 +12,7 @@ class CreateSeatService{
 
   }: ISeatCreate): Promise<ISeat> {
     
-    const createSeat = await this.seatRepository.create({
+    const createSeat = await this.seatRepository.createSeat({
       seat_number
     });
 
