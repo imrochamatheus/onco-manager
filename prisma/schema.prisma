@@ -66,7 +66,7 @@ model Professionals {
   id String @id @default(uuid())
   
   full_name String @db.VarChar(255)
-  email String @db.VarChar(255)
+  email String @db.VarChar(255) @unique
   password String @db.VarChar(255)
   
   access_level Access @default(operator)

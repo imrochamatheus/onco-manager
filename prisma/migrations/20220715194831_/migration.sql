@@ -92,6 +92,9 @@ CREATE UNIQUE INDEX "schedule_id_protocol_key" ON "schedule"("id_protocol");
 CREATE UNIQUE INDEX "schedule_id_patient_key" ON "schedule"("id_patient");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "professionals_email_key" ON "professionals"("email");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "seat_seat_number_key" ON "seat"("seat_number");
 
 -- CreateIndex
