@@ -18,6 +18,6 @@ RUN yarn
 
 RUN yarn prisma generate
 
-# RUN yarn prisma migrate dev
+RUN yarn prisma migrate dev
 
 CMD ["yarn", "dev"]
