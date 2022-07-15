@@ -1,5 +1,5 @@
 import { IPatient, IPatientByIdReq } from "../../interfaces/patient.interface";
-import { IPatientRepository } from "../../repositories/implementations/patients";
+import { IPatientRepository } from "../../repositories/implementations/IPatientRepository";
 
 class GetPatientByIdSvc {
   constructor(private patientRepository: IPatientRepository) {}
