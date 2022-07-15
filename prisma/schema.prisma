@@ -40,7 +40,7 @@ model Patient {
   id String @id @default(uuid())
   
   name String @db.VarChar(255)
-  medical_records_number Int @unique
+  medical_records_number String @db.VarChar(255) @unique
   contact String @db.VarChar(255)
 
   register_seat RegisterSeat?
@@ -66,7 +66,7 @@ model Professionals {
   id String @id @default(uuid())
   
   full_name String @db.VarChar(255)
-  email String @db.VarChar(255)
+  email String @db.VarChar(255) @unique
   password String @db.VarChar(255)
   
   access_level Access @default(operator)
@@ -104,7 +104,6 @@ model RegisterSeat {
 
   @@map("register_seat")
 }
-
 
 model Protocol {
   id BigInt @id @db.BigInt @default(autoincrement())

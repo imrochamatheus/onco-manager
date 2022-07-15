@@ -16,6 +16,10 @@ interface IPatientRepository {
 
   getPatientById({ patient_id }: IPatientByIdReq): Promise<IPatient | null>;
 
+  getPatientByMedicalRecordsNumber(
+    medical_records_number: string
+  ): Promise<IPatient | null>;
+
   patchPatientById(
     { patient_id }: IPatientByIdReq,
     data: IPatientPatch
