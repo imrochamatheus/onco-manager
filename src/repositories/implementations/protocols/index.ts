@@ -37,7 +37,7 @@ class ProtocolsRepository implements IProtocolReposity {
     return protocols;
   }
 
-  public async readOneProtocol(protocol_id: string): Promise<IProtocol> {
+  public async readOneProtocol(protocol_id: number): Promise<IProtocol> {
     const protocol = await this.prisma.protocol.findUnique({
       where: protocol_id,
     });
@@ -46,7 +46,7 @@ class ProtocolsRepository implements IProtocolReposity {
   }
 
   public async updateProtocol(
-    protocol_id: string,
+    protocol_id: number,
     data: IProtocolUpdate
   ): Promise<void> {
     
@@ -57,7 +57,7 @@ class ProtocolsRepository implements IProtocolReposity {
 
   }
 
-  public async deleteProtocol(protocol_id: string): Promise<void> {
+  public async deleteProtocol(protocol_id: number): Promise<void> {
     await this.prisma.protocol.delete({
         where: {
             id: protocol_id
