@@ -9,4 +9,5 @@ class GetAllPatientsSvc {
   }
 }
 
+//comment
 export { GetAllPatientsSvc };
