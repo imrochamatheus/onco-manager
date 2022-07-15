@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { CreatePatientSvc } from "../../services/patients/createPatient.svc";
 
-export class CreatePatientCtrl {
+class CreatePatientCtrl {
   constructor(private createPatientSvc: CreatePatientSvc) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
@@ -15,3 +15,5 @@ export class CreatePatientCtrl {
     });
   }
 }
+
+export { CreatePatientCtrl };

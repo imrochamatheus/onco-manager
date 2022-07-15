@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { GetAllPatientsSvc } from "../../services/patients/getAllPatients.svc";
 
-export class GetAllPatientsCtrl {
+class GetAllPatientsCtrl {
   constructor(private getAllPatientSvc: GetAllPatientsSvc) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
@@ -9,3 +9,4 @@ export class GetAllPatientsCtrl {
     return res.status(200).json(allPatients);
   }
 }
+export { GetAllPatientsCtrl };
