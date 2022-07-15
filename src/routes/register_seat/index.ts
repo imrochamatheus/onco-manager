@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { createRegisterSeatController, listRelatoriesController } from "../../controllers/register_seat";
+import { createRegisterSeatController, listPatientHistoryController, listRelatoriesController } from "../../controllers/register_seat";
 
 
 const registerSeatRouter = Router();
@@ -9,6 +9,9 @@ registerSeatRouter.post("/register_seat", (req: Request, res: Response) => {
 });
 registerSeatRouter.get("/relatories/:date", (req: Request, res: Response) => {
   listRelatoriesController.handle(req, res);
+});
+registerSeatRouter.get("/:patient_id/history", (req: Request, res: Response) => {
+  listPatientHistoryController.handle(req, res);
 });
 
 

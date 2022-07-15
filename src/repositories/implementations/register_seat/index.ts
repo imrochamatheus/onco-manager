@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { IPatientByIdReq } from "../../../interfaces/patient.interface";
 import { IRegisterSeatCreate, IRegisterSeat, IRegisterSeatDate } from "../../../interfaces/registerSeat.interface";
 import { IRegisterSeatRepository } from "../IRegisterSeatRepository";
 
@@ -43,6 +44,17 @@ class RegisterSeatRepository implements IRegisterSeatRepository{
     });
 
     return relatories;
+  }
+
+  public async listPatientHistory({ patient_id }: IPatientByIdReq): Promise<IRegisterSeat[]>{
+
+    const history = await this.prisma.registerSeat.findMany({
+      where: {
+        id_patient: patient_id,
+      },
+    });
+
+    return history;
   }
 }
 
