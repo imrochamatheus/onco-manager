@@ -5,6 +5,18 @@ CREATE TYPE "Access" AS ENUM ('master', 'staff', 'operator');
 CREATE TYPE "Occupation" AS ENUM ('manager', 'secretary', 'nurse', 'nursing_technician');
 
 -- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "admin" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "schedule" (
     "id" TEXT NOT NULL,
     "cicle_number" INTEGER NOT NULL,
@@ -71,10 +83,16 @@ CREATE TABLE "protocol" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "schedule_id_protocol_key" ON "schedule"("id_protocol");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "schedule_id_patient_key" ON "schedule"("id_patient");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "seat_seat_number_key" ON "seat"("seat_number");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "register_seat_id_seat_key" ON "register_seat"("id_seat");
