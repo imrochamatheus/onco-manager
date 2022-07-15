@@ -2,6 +2,7 @@ import {
   IPatient,
   IPatientByIdReq,
   IPatientCreateReq,
+  IPatientPatch,
 } from "../../interfaces/patient.interface";
 
 interface IPatientRepository {
@@ -17,7 +18,7 @@ interface IPatientRepository {
 
   patchPatientById(
     { patient_id }: IPatientByIdReq,
-    data: IPatientCreateReq
+    data: IPatientPatch
   ): Promise<void>;
 
   deletePatientById({ patient_id }: IPatientByIdReq): Promise<void>;
