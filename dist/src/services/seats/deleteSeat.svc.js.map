@@ -1,1 +1,0 @@
-{"version":3,"file":"deleteSeat.svc.js","sourceRoot":"","sources":["../../../../src/services/seats/deleteSeat.svc.ts"],"names":[],"mappings":";;;;;;;;;;;;AAGA,MAAM,iBAAiB;IACrB,YAAoB,cAAgC;QAAhC,mBAAc,GAAd,cAAc,CAAkB;IAAG,CAAC;IAElD,OAAO,CAAC,EAAE,OAAO,EAAW;;YAChC,MAAM,IAAI,CAAC,cAAc,CAAC,UAAU,CAAC;gBACnC,OAAO;aACR,CAAC,CAAC;QACL,CAAC;KAAA;CACF;AAEQ,8CAAiB"}

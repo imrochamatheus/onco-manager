@@ -1,1 +1,0 @@
-{"version":3,"file":"listAllSeats.svc.js","sourceRoot":"","sources":["../../../../src/services/seats/listAllSeats.svc.ts"],"names":[],"mappings":";;;;;;;;;;;;AAGA,MAAM,mBAAmB;IACvB,YAAoB,cAAgC;QAAhC,mBAAc,GAAd,cAAc,CAAkB;IAAG,CAAC;IAElD,OAAO;;YACX,MAAM,KAAK,GAAG,MAAM,IAAI,CAAC,cAAc,CAAC,YAAY,EAAE,CAAC;YAEvD,OAAO,KAAK,CAAC;QACf,CAAC;KAAA;CACF;AAEQ,kDAAmB"}
