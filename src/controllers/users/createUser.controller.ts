@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+import { IController } from "../../interfaces/controllers.interfaces";
 import { CreateUserService } from "../../services/users/createUser.service";
 
-export class CreateUserController {
+export class CreateUserController implements IController {
   constructor(private createUserService: CreateUserService) {}
 
   async handle(req: Request, res: Response): Promise<Response | void> {

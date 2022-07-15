@@ -80,7 +80,7 @@ model Professionals {
 model Seat {
   id Int @id @db.SmallInt @default(autoincrement())
   
-  seat_number Int @db.SmallInt
+  seat_number Int @db.SmallInt @unique
   register_seat RegisterSeat?
   
   @@map("seat")
