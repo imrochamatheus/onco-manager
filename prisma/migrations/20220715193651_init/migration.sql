@@ -5,6 +5,18 @@ CREATE TYPE "Access" AS ENUM ('master', 'staff', 'operator');
 CREATE TYPE "Occupation" AS ENUM ('manager', 'secretary', 'nurse', 'nursing_technician');
 
 -- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "admin" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "schedule" (
     "id" TEXT NOT NULL,
     "cicle_number" INTEGER NOT NULL,
@@ -63,6 +75,7 @@ CREATE TABLE "register_seat" (
 -- CreateTable
 CREATE TABLE "protocol" (
     "id" BIGSERIAL NOT NULL,
+    "name" VARCHAR(255) NOT NULL,
     "volume" REAL NOT NULL,
     "description" VARCHAR(255) NOT NULL,
     "infusion_time" VARCHAR(255) NOT NULL,
@@ -71,10 +84,19 @@ CREATE TABLE "protocol" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "schedule_id_protocol_key" ON "schedule"("id_protocol");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "schedule_id_patient_key" ON "schedule"("id_patient");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "patient_medical_records_number_key" ON "patient"("medical_records_number");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "seat_seat_number_key" ON "seat"("seat_number");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "register_seat_id_seat_key" ON "register_seat"("id_seat");
@@ -84,6 +106,9 @@ CREATE UNIQUE INDEX "register_seat_id_patient_key" ON "register_seat"("id_patien
 
 -- CreateIndex
 CREATE UNIQUE INDEX "register_seat_id_protocol_key" ON "register_seat"("id_protocol");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "protocol_name_key" ON "protocol"("name");
 
 -- AddForeignKey
 ALTER TABLE "schedule" ADD CONSTRAINT "schedule_id_patient_fkey" FOREIGN KEY ("id_patient") REFERENCES "patient"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

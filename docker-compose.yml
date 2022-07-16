@@ -17,8 +17,7 @@ services:
   api:
     container_name: api
     command: bash -c "
-      yarn prisma migrate dev
-      && yarn dev"
+      yarn prisma generate && yarn prisma migrate dev && yarn dev"
     stdin_open: true
     build:
       context: .
@@ -26,10 +25,15 @@ services:
     depends_on:
       - postgres
     ports:
-      - "3000:3000"
-    restart: always
+      - 3000:3000
+    environment:
+      - PORT=3000
     env_file:
       - .env
+    restart: always
+    volumes:
+      - .:/app
 
 volumes:
   postgres-data:
+    driver: local

@@ -6,14 +6,14 @@ interface IProtocolCreate {
 }
 
 interface IProtocol extends IProtocolCreate {
-  id?: number;
+  id?: BigInt;
 }
 
 interface IProtocolUpdate {
-  name?:string;
+  name?: string;
   volume?: number;
   description?: string;
   infusion_time?: string;
 }
 
-export {IProtocolCreate, IProtocol, IProtocolUpdate}
+export { IProtocolCreate, IProtocol, IProtocolUpdate };
