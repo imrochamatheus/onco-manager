@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/src/index.js",
+    "start": "yarn prisma migrate dev && node dist/src/index.js",
     "test": "jest",
     "build": "tsc",
     "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/index.ts"
