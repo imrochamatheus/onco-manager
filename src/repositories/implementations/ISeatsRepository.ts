@@ -6,4 +6,5 @@ interface ISeatsRepository {
   deleteSeat({ seat_id }: ISeatId): Promise<void>;
 }
 
+//comment
 export { ISeatsRepository };
