@@ -18,10 +18,10 @@ export const patientPatchSchema = yup.object().shape({
   name: yup.string(),
   medical_records_number: yup
     .string()
-    .matches(/[^A-z]/, "medical records number must contain only numbers")
+    .matches(/[^A-z]/, "Medical records number must contain only numbers")
     .max(255, "Must be a maximum of 255 characters"),
   contact: yup
     .string()
-    .matches(/[^A-z]/, "medical records number must contain only numbers")
+    .matches(/[^A-z]/, "Medical records number must contain only numbers")
     .max(255, "Must be a maximum of 255 characters"),
 });
