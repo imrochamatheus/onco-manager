@@ -42,7 +42,7 @@ model Patient {
   id String @id @default(uuid())
   
   name String @db.VarChar(255)
-  medical_records_number Int @unique
+  medical_records_number String @unique
   contact String @db.VarChar(255)
 
   register_seat RegisterSeat?
