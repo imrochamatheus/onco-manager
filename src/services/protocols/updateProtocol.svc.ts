@@ -4,8 +4,8 @@ import { IProtocolReposity } from "../../repositories/implementations/IProtocols
 class UpdateProtocolService {
   constructor(private protocolRepository: IProtocolReposity) {}
 
-  async execute(protocol_id: number, data: IProtocolUpdate): Promise<void> {
-    await this.protocolRepository.updateProtocol(protocol_id, data);
+  async execute(id: number, data: IProtocolUpdate): Promise<void> {
+    await this.protocolRepository.updateProtocol(id, data);
   }
 }
 

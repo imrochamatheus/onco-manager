@@ -4,7 +4,7 @@ import { IProtocolReposity } from "../../repositories/implementations/IProtocols
 class ReadProtocolService {
   constructor(private protocolRepository: IProtocolReposity) {}
 
-  async execute(protocol_id: number): Promise<IProtocol> {
+  async execute(protocol_id: number): Promise<IProtocol | null> {
     const protocol = await this.protocolRepository.readOneProtocol(protocol_id);
 
     return protocol;

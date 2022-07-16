@@ -1,11 +1,11 @@
 import { IProtocolReposity } from "../../repositories/implementations/IProtocolsRepository";
 
 class DeleteProtocolService {
-    constructor(private protocolRepository: IProtocolReposity) {}
+  constructor(private protocolRepository: IProtocolReposity) {}
 
-    async execute(protocol_id: number): Promise<void> {
-        await this.protocolRepository.deleteProtocol(protocol_id)
-    }
+  async execute(id: number): Promise<void> {
+    await this.protocolRepository.deleteProtocol(id);
+  }
 }
 
-export {DeleteProtocolService}
+export { DeleteProtocolService };

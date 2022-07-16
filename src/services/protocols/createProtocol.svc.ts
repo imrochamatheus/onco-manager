@@ -7,18 +7,10 @@ import { IProtocolReposity } from "../../repositories/implementations/IProtocols
 class CreateProtocolService {
   constructor(private protocolRepository: IProtocolReposity) {}
 
-  async execute({
-    name,
-    description,
-    volume,
-    infusion_time,
-  }: IProtocolCreate): Promise<IProtocol> {
-    const createProtocol = await this.protocolRepository.createProtocol({
-      name,
-      description,
-      volume,
-      infusion_time,
-    });
+  async execute(protocolData: IProtocolCreate): Promise<IProtocol> {
+    const createProtocol = await this.protocolRepository.createProtocol(
+      protocolData
+    );
 
     return createProtocol;
   }
