@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
+  id String @id @default(uuid()) 
   name String
   email String @unique
   admin Boolean @default(false)
@@ -106,9 +106,9 @@ model RegisterSeat {
 }
 
 model Protocol {
-  id BigInt @id @db.BigInt @default(autoincrement())
+  id BigInt @id @db.BigInt @default(autoincrement()) 
   name String @db.VarChar(255) @unique
-  volume Float @db.Real
+  volume Float @db.Real 
 
   description String @db.VarChar(255)
   infusion_time String @db.VarChar(255)
