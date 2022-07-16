@@ -1,22 +1,17 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  // provider = "sqlite"
-  // url      = env("DATABASE_URL")
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  admin Boolean @default(false)
+  id         String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  admin      Boolean  @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -24,31 +19,74 @@ model User {
 }
 
 model Schedule {
-  id String @id @default(uuid())
-
-  cicle_number Int 
-  id_protocol BigInt @unique
-  
-  id_patient String @unique
-  date DateTime 
-
-  patient Patient @relation(fields: [id_patient], references: [id])
-  protocol Protocol @relation(fields: [id_protocol], references: [id])
+  id           String   @id @default(uuid())
+  cicle_number Int
+  id_protocol  BigInt   @unique
+  id_patient   String   @unique
+  date         DateTime
+  patient      Patient  @relation(fields: [id_patient], references: [id])
+  protocol     Protocol @relation(fields: [id_protocol], references: [id])
 
   @@map("schedule")
 }
 
 model Patient {
-  id String @id @default(uuid())
-  
-  name String @db.VarChar(255)
-  medical_records_number String @unique
-  contact String @db.VarChar(255)
-
-  register_seat RegisterSeat?
-  schedule Schedule?
+  id                     String        @id @default(uuid())
+  name                   String        @db.VarChar(255)
+  medical_records_number String        @unique
+  contact                String        @db.VarChar(255)
+  register_seat          RegisterSeat?
+  schedule               Schedule?
 
   @@map("patient")
+}
+
+model Professionals {
+  id           String     @id @default(uuid())
+  full_name    String     @db.VarChar(255)
+  email        String     @db.VarChar(255)
+  password     String     @db.VarChar(255)
+  access_level Access     @default(operator)
+  occupation   Occupation @default(nurse)
+
+  @@map("professionals")
+}
+
+model Seat {
+  id            Int           @id @default(autoincrement()) @db.SmallInt
+  seat_number   Int           @unique @db.SmallInt
+  register_seat RegisterSeat?
+
+  @@map("seat")
+}
+
+model RegisterSeat {
+  id                    String   @id @default(uuid())
+  id_seat               Int      @unique
+  id_patient            String   @unique
+  id_protocol           BigInt   @unique
+  checkin_timestamp     String   @db.VarChar(50)
+  checkout_timestamp    String   @db.VarChar(50)
+  checkin_professional  String   @db.VarChar(255)
+  checkout_professional String   @db.VarChar(255)
+  notes                 String   @db.VarChar(255)
+  patient               Patient  @relation(fields: [id_patient], references: [id])
+  protocol              Protocol @relation(fields: [id_protocol], references: [id])
+  seat                  Seat     @relation(fields: [id_seat], references: [id])
+
+  @@map("register_seat")
+}
+
+model Protocol {
+  id            BigInt        @id @default(autoincrement())
+  name          String        @unique
+  volume        Float         @db.Real
+  description   String        @db.VarChar(255)
+  infusion_time String        @db.VarChar(255)
+  register_seat RegisterSeat?
+  schedule      Schedule?
+
+  @@map("protocol")
 }
 
 enum Access {
@@ -62,63 +100,4 @@ enum Occupation {
   secretary
   nurse
   nursing_technician
-}
-
-model Professionals {
-  id String @id @default(uuid())
-  
-  full_name String @db.VarChar(255)
-  email String @db.VarChar(255)
-  password String @db.VarChar(255)
-  
-  access_level Access @default(operator)
-  occupation Occupation @default(nurse)
-  
-  @@map("professionals")
-}
-
-model Seat {
-  id Int @id @db.SmallInt @default(autoincrement())
-  
-  seat_number Int @db.SmallInt @unique
-  register_seat RegisterSeat?
-  
-  @@map("seat")
-}
-
-model RegisterSeat {
-  id String @id @default(uuid())
-
-  id_seat Int @unique
-  id_patient String @unique
-  id_protocol BigInt @unique
-
-  checkin_timestamp String @db.VarChar(50)
-  checkout_timestamp String @db.VarChar(50)
-  checkin_professional String @db.VarChar(255)
-  checkout_professional String @db.VarChar(255)
-
-  notes String @db.VarChar(255)
-
-  seat Seat @relation(fields: [id_seat], references: [id])
-  patient Patient @relation(fields: [id_patient], references: [id])
-  protocol Protocol @relation(fields: [id_protocol], references: [id])
-
-  @@map("register_seat")
-}
-
-
-model Protocol {
-  id BigInt @id @db.BigInt @default(autoincrement())
-
-  name String @unique
-  volume Float @db.Real
-
-  description String @db.VarChar(255)
-  infusion_time String @db.VarChar(255)
-  
-  register_seat RegisterSeat?
-  schedule Schedule?
-
-  @@map("protocol")
 }
