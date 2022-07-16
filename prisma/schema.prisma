@@ -6,12 +6,14 @@ generator client {
 }
 
 datasource db {
+  // provider = "sqlite"
+  // url      = env("DATABASE_URL")
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id String @id @default(uuid()) 
+  id String @id @default(uuid())
   name String
   email String @unique
   admin Boolean @default(false)
@@ -40,7 +42,7 @@ model Patient {
   id String @id @default(uuid())
   
   name String @db.VarChar(255)
-  medical_records_number String @db.VarChar(255) @unique
+  medical_records_number Int 
   contact String @db.VarChar(255)
 
   register_seat RegisterSeat?
@@ -66,7 +68,7 @@ model Professionals {
   id String @id @default(uuid())
   
   full_name String @db.VarChar(255)
-  email String @db.VarChar(255) @unique
+  email String @db.VarChar(255)
   password String @db.VarChar(255)
   
   access_level Access @default(operator)
@@ -78,7 +80,7 @@ model Professionals {
 model Seat {
   id Int @id @db.SmallInt @default(autoincrement())
   
-  seat_number Int @unique @db.SmallInt 
+  seat_number Int @db.SmallInt @unique
   register_seat RegisterSeat?
   
   @@map("seat")
@@ -105,10 +107,11 @@ model RegisterSeat {
   @@map("register_seat")
 }
 
+
 model Protocol {
-  id BigInt @id @db.BigInt @default(autoincrement()) 
-  name String @db.VarChar(255) @unique
-  volume Float @db.Real 
+  id BigInt @id @db.BigInt @default(autoincrement())
+  
+  volume Float @db.Real
 
   description String @db.VarChar(255)
   infusion_time String @db.VarChar(255)
