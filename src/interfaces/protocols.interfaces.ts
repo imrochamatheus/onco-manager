@@ -5,8 +5,12 @@ interface IProtocolCreate {
   infusion_time: string;
 }
 
-interface IProtocol extends IProtocolCreate {
-  id?: BigInt;
+interface IProtocol
+  extends Omit<
+    IProtocolCreate,
+    "name" | "volume" | "description" | "infusion_time"
+  > {
+  id?: String;
 }
 
 interface IProtocolUpdate {
