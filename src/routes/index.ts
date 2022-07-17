@@ -1,14 +1,16 @@
-import { Router } from "express";
+import { registerSeatRouter } from "./register_seat";
+import { protocolsRouter } from "./protocols";
+import { patientsRouter } from "./patients";
 import { usersRouter } from "./users";
 import { seatsRouter } from "./seats";
-import { registerSeatRouter } from "./register_seat";
-import { professionalsRouter } from "./professionals";
+import { Router } from "express";
 
 const router = Router();
 
-router.use("/professional", professionalsRouter);
+router.use("/", registerSeatRouter);
 router.use("/users", usersRouter);
 router.use("/seats", seatsRouter);
-router.use("/", registerSeatRouter);
+router.use("/patients", patientsRouter);
+router.use("/protocols", protocolsRouter);
 
 export default router;
