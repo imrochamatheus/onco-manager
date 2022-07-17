@@ -43,6 +43,7 @@ interface IProfessionalCredentials
 }
 
 export {
+  Access,
   IProfessional,
   IProfessionalCreate,
   IProfessionalDisplay,

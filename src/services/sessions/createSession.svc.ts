@@ -17,7 +17,6 @@ class CreateSessionService {
     const professionalPwd = professional?.password || "";
     const access_level = professional?.access_level;
 
-    console.log(professionalPwd, password);
     const validPassword = await bcrypt.compare(password, professionalPwd);
 
     if (!validPassword) throw new AppError("Incorrect Email/Password", 401);
