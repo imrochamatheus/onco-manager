@@ -1,4 +1,5 @@
 import AppError from "../../errors/AppError";
+import { hashSync } from "bcrypt";
 import {
   IProfessionalCreate,
   IProfessionalDisplay,
@@ -9,18 +10,14 @@ class CreateProfessionalService {
   constructor(private professionalsRepository: IProfessionalRepository) {}
 
   async execute({
-    full_name,
-    email,
     password,
-    access_level,
-    occupation,
+    ...professionalData
   }: IProfessionalCreate): Promise<IProfessionalDisplay | AppError> {
+    password = hashSync(password, 10);
+
     const createdProfessional = await this.professionalsRepository.create({
-      full_name,
-      email,
       password,
-      access_level,
-      occupation,
+      ...professionalData,
     });
 
     return createdProfessional;

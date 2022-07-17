@@ -12,9 +12,9 @@ interface IProtocolReposity {
     infusion_time,
   }: IProtocolCreate): Promise<IProtocol>;
   listAllProtocols(): Promise<IProtocol[]>;
+  deleteProtocol(id: number): Promise<void>;
   readOneProtocol(id: number): Promise<IProtocol | null>;
   updateProtocol(id: number, data: IProtocolUpdate): Promise<void>;
-  deleteProtocol(id: number): Promise<void>;
 }
 
 export { IProtocolReposity };

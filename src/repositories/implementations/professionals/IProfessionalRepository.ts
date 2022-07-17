@@ -4,14 +4,9 @@ import {
 } from "../../interfaces/professionals.interface";
 
 interface IProfessionalRepository {
-  create({
-    full_name,
-    email,
-    password,
-    access_level,
-    occupation,
-  }: IProfessionalCreate): Promise<IProfessionalDisplay>;
+  create(professionalData: IProfessionalCreate): Promise<IProfessionalDisplay>;
   listAllProfessional(): Promise<IProfessionalDisplay[]>;
+  getProfessionalById(id: string): Promise<IProfessionalDisplay | null>;
 }
 
 export { IProfessionalRepository };

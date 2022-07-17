@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ListAllProfessionalService } from "../../services/professionals/listAllProfessional.service";
+import { ListAllProfessionalService } from "../../services/professionals/listAllProfessional.svc";
 
 export class ListAllProfessionalController {
   constructor(private listAllProfessionalService: ListAllProfessionalService) {}

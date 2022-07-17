@@ -1,9 +1,11 @@
 import {
   createProfessionalService,
+  getOneProfessionalService,
   listAllProfessionalService,
 } from "../../services/professionals";
-import { CreateProfessionalController } from "./createProfessional.controller";
-import { ListAllProfessionalController } from "./listAllProfessional.controller";
+import { CreateProfessionalController } from "./createProfessional.ctrl";
+import { GetProfessionalByIdController } from "./getProfessionalById.ctrl";
+import { ListAllProfessionalController } from "./listAllProfessional.ctrl";
 
 const createProfessionalController = new CreateProfessionalController(
   createProfessionalService
@@ -11,5 +13,12 @@ const createProfessionalController = new CreateProfessionalController(
 const listAllProfessionalController = new ListAllProfessionalController(
   listAllProfessionalService
 );
+const getProfessionalByIdController = new GetProfessionalByIdController(
+  getOneProfessionalService
+);
 
-export { createProfessionalController, listAllProfessionalController };
+export {
+  createProfessionalController,
+  listAllProfessionalController,
+  getProfessionalByIdController,
+};

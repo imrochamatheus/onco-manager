@@ -4,7 +4,7 @@ import {
   ISeat,
   ISeatId,
 } from "../../../interfaces/seats.interfaces";
-import { ISeatsRepository } from "../ISeatsRepository";
+import { ISeatsRepository } from "./ISeatsRepository";
 
 class SeatsRepository implements ISeatsRepository {
   prisma: PrismaClient;
