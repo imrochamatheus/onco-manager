@@ -54,6 +54,14 @@ class ProfessionalRepository implements IProfessionalRepository {
       where: { id },
     });
   }
+
+  async deleteProfessional(id: string): Promise<void> {
+    await this.prisma.professionals.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 export { ProfessionalRepository };

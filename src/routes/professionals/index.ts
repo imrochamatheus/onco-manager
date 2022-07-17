@@ -1,5 +1,6 @@
 import {
   createProfessionalController,
+  deleteProfessionalController,
   getProfessionalByIdController,
   listAllProfessionalController,
   updateProfessionalController,
@@ -39,6 +40,14 @@ professionalsRouter.patch(
   schemaValidation(professionalPatchSchema),
   (req: Request, res: Response, next: NextFunction) => {
     updateProfessionalController.handle(req, res, next);
+  }
+);
+
+professionalsRouter.delete(
+  "/:id",
+  checkIfProfessionalExists,
+  (req: Request, res: Response, next: NextFunction) => {
+    deleteProfessionalController.handle(req, res, next);
   }
 );
 

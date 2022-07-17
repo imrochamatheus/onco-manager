@@ -8,6 +8,7 @@ interface IProfessionalRepository {
   updateProfessional(id: string, data: IProfessionalCreate): Promise<void>;
   getProfessionalById(id: string): Promise<IProfessionalDisplay | null>;
   listAllProfessional(): Promise<IProfessionalDisplay[]>;
+  deleteProfessional(id: string): Promise<void>;
 }
 
 export { IProfessionalRepository };
