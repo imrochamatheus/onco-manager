@@ -12,7 +12,7 @@ class ProfessionalRepository implements IProfessionalRepository {
     this.prisma = new PrismaClient();
   }
 
-  public async create(
+  async create(
     professionalData: IProfessionalCreate
   ): Promise<IProfessionalDisplay> {
     const professional = await this.prisma.professionals.create({
@@ -31,18 +31,28 @@ class ProfessionalRepository implements IProfessionalRepository {
     return professional;
   }
 
-  public async listAllProfessional(): Promise<IProfessionalDisplay[]> {
+  async listAllProfessional(): Promise<IProfessionalDisplay[]> {
     const professionals = await this.prisma.professionals.findMany();
 
     return professionals;
   }
 
-  getProfessionalById(id: string): Promise<IProfessionalDisplay | null> {
-    const professional = this.prisma.professionals.findUniqueOrThrow({
+  async getProfessionalById(id: string): Promise<IProfessionalDisplay | null> {
+    const professional = await this.prisma.professionals.findUniqueOrThrow({
       where: { id },
     });
 
     return professional;
+  }
+
+  async updateProfessional(
+    id: string,
+    data: IProfessionalCreate
+  ): Promise<void> {
+    await this.prisma.professionals.update({
+      data,
+      where: { id },
+    });
   }
 }
 

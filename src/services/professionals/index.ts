@@ -2,6 +2,7 @@ import { ProfessionalRepository } from "../../repositories/implementations/profe
 import { CreateProfessionalService } from "./createProfessional.svc";
 import { ListOneProfessionalService } from "./getOneProfessional.svc";
 import { ListAllProfessionalService } from "./listAllProfessional.svc";
+import { UpdateProfessionalService } from "./updateProfessional.svc";
 
 const professionalsRepository = new ProfessionalRepository();
 
@@ -14,9 +15,13 @@ const listAllProfessionalService = new ListAllProfessionalService(
 const getOneProfessionalService = new ListOneProfessionalService(
   professionalsRepository
 );
+const updateProfessionalService = new UpdateProfessionalService(
+  professionalsRepository
+);
 
 export {
   createProfessionalService,
   listAllProfessionalService,
   getOneProfessionalService,
+  updateProfessionalService,
 };
