@@ -6,7 +6,7 @@ const professionalSchema = yup
     full_name: yup
       .string()
       .required()
-      .matches(/^([a-zA-Zà-úÀ-Ú]\s)+$/, "Must contain only letters")
+      .matches(/^[A-zà-úÀ-Ú]+$/, "Must contain only letters")
       .max(255, "Must be a maximum of 255 characters"),
     email: yup.string().email().required(),
     cartao_nacional_saude: yup
