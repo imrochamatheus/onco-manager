@@ -1,6 +1,6 @@
 import AppError from "../../errors/AppError";
 import { IPatientByIdReq } from "../../interfaces/patient.interface";
-import { IPatientRepository } from "../../repositories/implementations/IPatientRepository";
+import { IPatientRepository } from "../../repositories/implementations/patients/IPatientRepository";
 
 class DeletePatientByIdSvc {
   constructor(private patientRepository: IPatientRepository) {}

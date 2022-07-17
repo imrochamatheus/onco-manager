@@ -4,7 +4,7 @@ import {
   IPatientByIdReq,
   IPatientCreateReq,
 } from "../../../interfaces/patient.interface";
-import { IPatientRepository } from "../IPatientRepository";
+import { IPatientRepository } from "./IPatientRepository";
 
 class PatientRepository implements IPatientRepository {
   prisma: PrismaClient;

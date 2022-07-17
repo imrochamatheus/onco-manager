@@ -3,7 +3,7 @@ import {
   IPatient,
   IPatientCreateReq,
 } from "../../interfaces/patient.interface";
-import { IPatientRepository } from "../../repositories/implementations/IPatientRepository";
+import { IPatientRepository } from "../../repositories/implementations/patients/IPatientRepository";
 
 class CreatePatientSvc {
   constructor(private patientRepository: IPatientRepository) {}

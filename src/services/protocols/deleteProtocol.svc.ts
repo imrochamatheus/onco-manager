@@ -1,4 +1,4 @@
-import { IProtocolReposity } from "../../repositories/implementations/IProtocolsRepository";
+import { IProtocolReposity } from "../../repositories/implementations/protocols/IProtocolsRepository";
 
 class DeleteProtocolService {
   constructor(private protocolRepository: IProtocolReposity) {}

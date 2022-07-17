@@ -1,3 +1,4 @@
+import { professionalsRouter } from "./professionals";
 import { registerSeatRouter } from "./register_seat";
 import { protocolsRouter } from "./protocols";
 import { patientsRouter } from "./patients";
@@ -8,11 +9,12 @@ import { Router } from "express";
 
 const router = Router();
 
-router.use("/", registerSeatRouter);
 router.use("/users", usersRouter);
 router.use("/seats", seatsRouter);
+router.use("/", registerSeatRouter);
+router.use("/login", sessionsRouter);
 router.use("/patients", patientsRouter);
 router.use("/protocols", protocolsRouter);
-router.use("/login", sessionsRouter)
+router.use("/professionals", professionalsRouter);
 
 export default router;

@@ -41,13 +41,15 @@ model Patient {
   @@map("patient")
 }
 
+
 model Professionals {
   id           String     @id @default(uuid())
   full_name    String     @db.VarChar(255)
-  email        String     @db.VarChar(255)
-  password     String     @db.VarChar(255)
+  email        String     @db.VarChar(255) @unique
+  password     String     @db.VarChar(255) 
   access_level Access     @default(operator)
   occupation   Occupation @default(nurse)
+  cartao_nacional_saude String @db.VarChar(15) @unique
 
   @@map("professionals")
 }

@@ -6,7 +6,7 @@ import {
   IProtocol,
   IProtocolUpdate,
 } from "../../../interfaces/protocols.interfaces";
-import { IProtocolReposity } from "../IProtocolsRepository";
+import { IProtocolReposity } from "./IProtocolsRepository";
 
 class ProtocolsRepository implements IProtocolReposity {
   prisma: PrismaClient;

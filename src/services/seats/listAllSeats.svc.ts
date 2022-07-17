@@ -1,5 +1,5 @@
 import { ISeat } from "../../interfaces/seats.interfaces";
-import { ISeatsRepository } from "../../repositories/implementations/ISeatsRepository";
+import { ISeatsRepository } from "../../repositories/implementations/seats/ISeatsRepository";
 
 class ListAllSeatsService {
   constructor(private seatRepository: ISeatsRepository) {}

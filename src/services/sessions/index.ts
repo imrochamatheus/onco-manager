@@ -1,9 +1,7 @@
-//import {ProfessionalsRepository} from "../../repositories/implementations/professionals" 
-
+import { ProfessionalRepository } from "../../repositories/implementations/professionals";
 import { CreateSessionService } from "./createSession.svc";
 
-// const professionalsRepository = new ProfessionalsRepository()
+const professionalsRepository = new ProfessionalRepository();
+const createSessionService = new CreateSessionService(professionalsRepository);
 
-const createSessionService = new CreateSessionService(""/*professionalsRepository*/)
-
-export {createSessionService}
+export { createSessionService };
