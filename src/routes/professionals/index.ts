@@ -29,7 +29,7 @@ professionalsRouter.get(
 
 professionalsRouter.post(
   "/",
-  authorizarionMiddleware("master"),
+  authorizarionMiddleware(["master"]),
   schemaValidation(professionalSchema),
   (req: Request, res: Response, next: NextFunction) => {
     createProfessionalController.handle(req, res, next);
@@ -38,7 +38,7 @@ professionalsRouter.post(
 
 professionalsRouter.patch(
   "/:id",
-  authorizarionMiddleware("master"),
+  authorizarionMiddleware(["master"]),
   checkIfProfessionalExists,
   schemaValidation(professionalPatchSchema),
   (req: Request, res: Response, next: NextFunction) => {

@@ -10,7 +10,7 @@ interface jwtPayload {
 }
 
 const authorizarionMiddleware =
-  (access: Access) =>
+  (access: Access[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
     const { authorization } = req.headers;
 
@@ -28,7 +28,7 @@ const authorizarionMiddleware =
       where: { id },
     });
 
-    if (!professionalStillExists || access_level !== access)
+    if (!professionalStillExists || !access.includes(access_level))
       return res.status(401).json({ message: "Unauthorized access" });
 
     next();
