@@ -25,6 +25,7 @@ class ProfessionalRepository implements IProfessionalRepository {
         full_name: true,
         occupation: true,
         access_level: true,
+        cartao_nacional_saude: true,
       },
     });
 

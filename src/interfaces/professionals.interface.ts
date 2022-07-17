@@ -16,6 +16,7 @@ interface IProfessionalCreate {
   email: string;
   password: string;
   access_level: Access;
+  cartao_nacional_saude: string;
   occupation: Occupation;
 }
 
@@ -31,6 +32,7 @@ interface IProfessionalDisplay {
   email: string;
   access_level: string;
   occupation: string;
+  cartao_nacional_saude: string;
 }
 
 export { IProfessional, IProfessionalCreate, IProfessionalDisplay };
