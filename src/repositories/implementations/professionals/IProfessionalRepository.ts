@@ -1,7 +1,7 @@
 import {
   IProfessionalCreate,
   IProfessionalDisplay,
-} from "../../interfaces/professionals.interface";
+} from "../../../interfaces/professionals.interface";
 
 interface IProfessionalRepository {
   create(professionalData: IProfessionalCreate): Promise<IProfessionalDisplay>;
