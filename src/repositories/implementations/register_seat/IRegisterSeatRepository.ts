@@ -2,7 +2,7 @@ import {
   IRegisterSeat,
   IRegisterSeatCreate,
   IRegisterSeatDate,
-} from "../../interfaces/registerSeat.interface";
+} from "../../../interfaces/registerSeat.interface";
 
 interface IRegisterSeatRepository {
   createRegisterSeat({

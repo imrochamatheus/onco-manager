@@ -1,5 +1,5 @@
 import { IProfessionalDisplay } from "../../interfaces/professionals.interface";
-import { IProfessionalRepository } from "../../repositories/implementations/IProfessionalRepository";
+import { IProfessionalRepository } from "../../repositories/implementations/professionals/IProfessionalRepository";
 
 class ListAllProfessionalService {
   constructor(private professionalRepository: IProfessionalRepository) {}

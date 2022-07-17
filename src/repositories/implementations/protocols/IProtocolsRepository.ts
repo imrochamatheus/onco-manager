@@ -2,7 +2,7 @@ import {
   IProtocol,
   IProtocolCreate,
   IProtocolUpdate,
-} from "../../interfaces/protocols.interfaces";
+} from "../../../interfaces/protocols.interfaces";
 
 interface IProtocolReposity {
   createProtocol({

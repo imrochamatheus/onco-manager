@@ -1,5 +1,5 @@
 import { IPatient } from "../../interfaces/patient.interface";
-import { IPatientRepository } from "../../repositories/implementations/IPatientRepository";
+import { IPatientRepository } from "../../repositories/implementations/patients/IPatientRepository";
 
 class GetAllPatientsSvc {
   constructor(private patientRepository: IPatientRepository) {}

@@ -3,7 +3,7 @@ import {
   IPatientByIdReq,
   IPatientCreateReq,
   IPatientPatch,
-} from "../../interfaces/patient.interface";
+} from "../../../interfaces/patient.interface";
 
 interface IPatientRepository {
   createPatient({

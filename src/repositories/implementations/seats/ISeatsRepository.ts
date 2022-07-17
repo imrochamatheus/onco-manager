@@ -1,4 +1,8 @@
-import { ISeatCreate, ISeat, ISeatId } from "../../interfaces/seats.interfaces";
+import {
+  ISeatCreate,
+  ISeat,
+  ISeatId,
+} from "../../../interfaces/seats.interfaces";
 
 interface ISeatsRepository {
   createSeat({ seat_number }: ISeatCreate): Promise<ISeat>;

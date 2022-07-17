@@ -1,6 +1,6 @@
 import AppError from "../../errors/AppError";
 import { IUser, IUserCreate } from "../../interfaces/users.interfaces";
-import { IUsersRepository } from "../../repositories/implementations/IUsersRepository";
+import { IUsersRepository } from "../../repositories/implementations/users/IUsersRepository";
 
 class CreateUserService {
   constructor(private usersRepository: IUsersRepository) {}

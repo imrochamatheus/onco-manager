@@ -1,17 +1,28 @@
 import { PrismaClient } from "@prisma/client";
-import { IRegisterSeatCreate, IRegisterSeat, IRegisterSeatDate } from "../../../interfaces/registerSeat.interface";
-import { IRegisterSeatRepository } from "../IRegisterSeatRepository";
+import {
+  IRegisterSeatCreate,
+  IRegisterSeat,
+  IRegisterSeatDate,
+} from "../../../interfaces/registerSeat.interface";
+import { IRegisterSeatRepository } from "./IRegisterSeatRepository";
 
-
-class RegisterSeatRepository implements IRegisterSeatRepository{
+class RegisterSeatRepository implements IRegisterSeatRepository {
   prisma: PrismaClient;
 
-  constructor(){
+  constructor() {
     this.prisma = new PrismaClient();
   }
 
-  public async createRegisterSeat({ id_patient, id_protocol, id_seat, checkin_timestamp, checkin_professional, checkout_timestamp, checkout_professional, notes }: IRegisterSeatCreate): Promise<IRegisterSeat> {
-    
+  public async createRegisterSeat({
+    id_patient,
+    id_protocol,
+    id_seat,
+    checkin_timestamp,
+    checkin_professional,
+    checkout_timestamp,
+    checkout_professional,
+    notes,
+  }: IRegisterSeatCreate): Promise<IRegisterSeat> {
     const registerSeat = await this.prisma.registerSeat.create({
       data: {
         id_patient,
@@ -21,18 +32,19 @@ class RegisterSeatRepository implements IRegisterSeatRepository{
         checkin_professional,
         checkout_timestamp,
         checkout_professional,
-        notes
-      }
-    })
+        notes,
+      },
+    });
 
     return registerSeat;
   }
 
-  public async listRelatories({ filter_date }: IRegisterSeatDate): Promise<IRegisterSeat[]> {
-
+  public async listRelatories({
+    filter_date,
+  }: IRegisterSeatDate): Promise<IRegisterSeat[]> {
     const splitedDate = filter_date.split("-");
 
-    const refatoredDate = `${splitedDate[1]}/${splitedDate[0]}/${splitedDate[2]}`
+    const refatoredDate = `${splitedDate[1]}/${splitedDate[0]}/${splitedDate[2]}`;
 
     const newDate = new Date(refatoredDate).getTime();
 
@@ -46,5 +58,4 @@ class RegisterSeatRepository implements IRegisterSeatRepository{
   }
 }
 
-
-export { RegisterSeatRepository }
+export { RegisterSeatRepository };
