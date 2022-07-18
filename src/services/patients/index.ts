@@ -21,9 +21,3 @@ export {
   patchPatientByIdSvc,
   deletePatientByIdSvc,
 };
-
-// export class PatientSvcs {
-//   static patientRepository = new PatientRepository();
-
-//   static create = new CreatePatientSvc(this.patientRepository);
-// }
