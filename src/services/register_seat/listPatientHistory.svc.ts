@@ -1,6 +1,6 @@
 import { IPatientByIdReq } from "../../interfaces/patient.interface";
 import { IRegisterSeat } from "../../interfaces/registerSeat.interface";
-import { IRegisterSeatRepository } from "../../repositories/implementations/IRegisterSeatRepository";
+import { IRegisterSeatRepository } from "../../repositories/implementations/register_seat/IRegisterSeatRepository";
 
 class ListPatientHistoryService {
   constructor(private registerSeatRepository: IRegisterSeatRepository) {}

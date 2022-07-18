@@ -2,7 +2,7 @@ import {
   IRegisterSeat,
   IRegisterSeatDate,
 } from "../../interfaces/registerSeat.interface";
-import { IRegisterSeatRepository } from "../../repositories/implementations/IRegisterSeatRepository";
+import { IRegisterSeatRepository } from "../../repositories/implementations/register_seat/IRegisterSeatRepository";
 
 class ListRelatoriesService {
   constructor(private registerSeatsRepository: IRegisterSeatRepository) {}

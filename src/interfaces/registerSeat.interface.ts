@@ -9,6 +9,13 @@ interface IRegisterSeatCreate {
   checkout_professional: string | null;
 }
 
+interface IRegisterSeatUpdate {
+  full_name: string;
+  notes?: string | null;
+  checkout_timestamp: string | null;
+  checkout_professional?: string | null;
+}
+
 interface IRegisterSeat extends IRegisterSeatCreate {
   id: string;
 }
@@ -17,4 +24,9 @@ interface IRegisterSeatDate {
   filter_date: string;
 }
 
-export { IRegisterSeatCreate, IRegisterSeat, IRegisterSeatDate };
+export {
+  IRegisterSeatCreate,
+  IRegisterSeat,
+  IRegisterSeatDate,
+  IRegisterSeatUpdate,
+};

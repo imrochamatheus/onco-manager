@@ -2,7 +2,7 @@ import {
   IRegisterSeat,
   IRegisterSeatCreate,
 } from "../../interfaces/registerSeat.interface";
-import { IRegisterSeatRepository } from "../../repositories/implementations/IRegisterSeatRepository";
+import { IRegisterSeatRepository } from "../../repositories/implementations/register_seat/IRegisterSeatRepository";
 
 class CreateRegisterSeatService {
   constructor(private registerSeatRepository: IRegisterSeatRepository) {}

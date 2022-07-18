@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { IPatientByIdReq } from "../../../interfaces/patient.interface";
-import { IRegisterSeatRepository } from "../IRegisterSeatRepository";
+import { IRegisterSeatRepository } from "./IRegisterSeatRepository";
 import {
   IRegisterSeatCreate,
   IRegisterSeatDate,
   IRegisterSeat,
+  IRegisterSeatUpdate,
 } from "../../../interfaces/registerSeat.interface";
 
 class RegisterSeatRepository implements IRegisterSeatRepository {
@@ -43,13 +44,16 @@ class RegisterSeatRepository implements IRegisterSeatRepository {
   public async listRelatories({
     filter_date,
   }: IRegisterSeatDate): Promise<IRegisterSeat[]> {
-    const splitedDate = filter_date.split("-");
-    const refatoredDate = `${splitedDate[1]}/${splitedDate[0]}/${splitedDate[2]}`;
-    const newDate = new Date(refatoredDate).getTime();
-
     const relatories = await this.prisma.registerSeat.findMany({
       where: {
-        checkin_professional: `${newDate}`,
+        checkin_timestamp: {
+          gte: new Date(filter_date).getTime().toString(),
+        },
+        AND: {
+          checkin_timestamp: {
+            lte: new Date(`${filter_date}T19:00`).getTime().toString(),
+          },
+        },
       },
     });
 
@@ -66,6 +70,24 @@ class RegisterSeatRepository implements IRegisterSeatRepository {
     });
 
     return history;
+  }
+
+  async updateCheckout(
+    id: string,
+    { full_name, ...data }: IRegisterSeatUpdate
+  ): Promise<IRegisterSeat[] | void> {
+    await this.prisma.registerSeat.update({
+      data: {
+        ...data,
+        checkout_professional: full_name,
+        checkout_timestamp: Date.now().toString(),
+      },
+      where: {
+        id,
+      },
+    });
+
+    return;
   }
 }
 

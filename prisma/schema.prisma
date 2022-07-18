@@ -35,7 +35,7 @@ model Patient {
   name                   String        @db.VarChar(255)
   medical_records_number String        @unique
   contact                String        @db.VarChar(255)
-  register_seat          RegisterSeat?
+  register_seat          RegisterSeat[]
   schedule               Schedule?
 
   @@map("patient")
@@ -57,21 +57,22 @@ model Professionals {
 model Seat {
   id            Int           @id @default(autoincrement()) @db.SmallInt
   seat_number   Int           @unique @db.SmallInt
-  register_seat RegisterSeat?
+  register_seat RegisterSeat[]
 
   @@map("seat")
 }
 
 model RegisterSeat {
   id                    String   @id @default(uuid())
-  id_seat               Int      @unique
-  id_patient            String   @unique
-  id_protocol           Int   @unique
+  id_seat               Int      
+  id_patient            String  
+  id_protocol           Int      
   checkin_timestamp     String   @db.VarChar(50)
   checkout_timestamp    String?   @db.VarChar(50)
   checkin_professional  String   @db.VarChar(255)
   checkout_professional String?   @db.VarChar(255)
   notes                 String?   @db.VarChar(255)
+
   patient               Patient  @relation(fields: [id_patient], references: [id])
   protocol              Protocol @relation(fields: [id_protocol], references: [id])
   seat                  Seat     @relation(fields: [id_seat], references: [id])
@@ -80,12 +81,12 @@ model RegisterSeat {
 }
 
 model Protocol {
-  id            Int        @id @default(autoincrement()) @db.Oid
+  id            Int        @id @default(autoincrement())
   name          String        @unique
   volume        Float         @db.Real
   description   String        @db.VarChar(255)
   infusion_time String        @db.VarChar(255)
-  register_seat RegisterSeat?
+  register_seat RegisterSeat[]
   schedule      Schedule?
 
   @@map("protocol")

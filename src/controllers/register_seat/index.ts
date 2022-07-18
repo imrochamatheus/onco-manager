@@ -2,9 +2,11 @@ import {
   createRegisterSeatService,
   listPatientHistoryService,
   listRelatoriesService,
+  updateRegisterSeatService,
 } from "../../services/register_seat";
 import { CreateRegisterSeatController } from "./createRegisterSeat.ctrl";
 import { ListPatientHistoryController } from "./listPatientHistory.ctrl";
+import { UpdateRegisterSeatController } from "./updateRegisterSeat.ctrl";
 import { ListRelatoriesController } from "./listRelatories.ctrl";
 
 const createRegisterSeatController = new CreateRegisterSeatController(
@@ -17,8 +19,13 @@ const listPatientHistoryController = new ListPatientHistoryController(
   listPatientHistoryService
 );
 
+const updateRegisterSeatController = new UpdateRegisterSeatController(
+  updateRegisterSeatService
+);
+
 export {
   createRegisterSeatController,
   listRelatoriesController,
   listPatientHistoryController,
+  updateRegisterSeatController,
 };

@@ -16,13 +16,14 @@ class CreateSessionService {
     const id = professional?.id;
     const professionalPwd = professional?.password || "";
     const access_level = professional?.access_level;
+    const full_name = professional?.full_name;
 
     const validPassword = await bcrypt.compare(password, professionalPwd);
 
     if (!validPassword) throw new AppError("Incorrect Email/Password", 401);
 
     const token = jwt.sign(
-      { access_level, id, email },
+      { access_level, id, email, full_name },
       `${process.env.SECRET_KEY}`,
       { expiresIn: "24h" }
     );
