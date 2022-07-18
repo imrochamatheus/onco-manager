@@ -21,13 +21,25 @@ model User {
 model Schedule {
   id           String   @id @default(uuid())
   cicle_number Int
-  id_protocol  Int   @unique
-  id_patient   String   @unique
+  id_protocol  Int   
+  id_patient   String   
   date         DateTime
   patient      Patient  @relation(fields: [id_patient], references: [id])
   protocol     Protocol @relation(fields: [id_protocol], references: [id])
 
   @@map("schedule")
+}
+
+model Protocol {
+  id            Int           @id @default(autoincrement()) @db.Oid
+  name          String        @unique
+  volume        Float         @db.Real
+  description   String        @db.VarChar(255)
+  infusion_time String        @db.VarChar(255)
+  register_seat RegisterSeat?
+  schedule      Schedule[]
+
+  @@map("protocol")
 }
 
 model Patient {
@@ -36,7 +48,7 @@ model Patient {
   medical_records_number String        @unique
   contact                String        @db.VarChar(255)
   register_seat          RegisterSeat?
-  schedule               Schedule?
+  schedule               Schedule[]
 
   @@map("patient")
 }
@@ -66,7 +78,7 @@ model RegisterSeat {
   id                    String   @id @default(uuid())
   id_seat               Int      @unique
   id_patient            String   @unique
-  id_protocol           Int   @unique
+  id_protocol           Int      @unique
   checkin_timestamp     String   @db.VarChar(50)
   checkout_timestamp    String?   @db.VarChar(50)
   checkin_professional  String   @db.VarChar(255)
@@ -79,17 +91,7 @@ model RegisterSeat {
   @@map("register_seat")
 }
 
-model Protocol {
-  id            Int        @id @default(autoincrement()) @db.Oid
-  name          String        @unique
-  volume        Float         @db.Real
-  description   String        @db.VarChar(255)
-  infusion_time String        @db.VarChar(255)
-  register_seat RegisterSeat?
-  schedule      Schedule?
 
-  @@map("protocol")
-}
 
 enum Access {
   master
