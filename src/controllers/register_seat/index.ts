@@ -3,7 +3,6 @@ import {
   listPatientHistoryService,
   listRelatoriesService,
 } from "../../services/register_seat";
-
 import { CreateRegisterSeatController } from "./createRegisterSeat.ctrl";
 import { ListPatientHistoryController } from "./listPatientHistory.ctrl";
 import { ListRelatoriesController } from "./listRelatories.ctrl";

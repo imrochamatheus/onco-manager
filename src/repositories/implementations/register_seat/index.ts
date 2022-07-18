@@ -3,8 +3,8 @@ import { IPatientByIdReq } from "../../../interfaces/patient.interface";
 import { IRegisterSeatRepository } from "../IRegisterSeatRepository";
 import {
   IRegisterSeatCreate,
-  IRegisterSeat,
   IRegisterSeatDate,
+  IRegisterSeat,
 } from "../../../interfaces/registerSeat.interface";
 
 class RegisterSeatRepository implements IRegisterSeatRepository {
@@ -26,14 +26,14 @@ class RegisterSeatRepository implements IRegisterSeatRepository {
   }: IRegisterSeatCreate): Promise<IRegisterSeat> {
     const registerSeat = await this.prisma.registerSeat.create({
       data: {
+        notes,
+        id_seat,
         id_patient,
         id_protocol,
-        id_seat,
         checkin_timestamp,
         checkin_professional,
         checkout_timestamp,
         checkout_professional,
-        notes,
       },
     });
 
@@ -44,9 +44,7 @@ class RegisterSeatRepository implements IRegisterSeatRepository {
     filter_date,
   }: IRegisterSeatDate): Promise<IRegisterSeat[]> {
     const splitedDate = filter_date.split("-");
-
     const refatoredDate = `${splitedDate[1]}/${splitedDate[0]}/${splitedDate[2]}`;
-
     const newDate = new Date(refatoredDate).getTime();
 
     const relatories = await this.prisma.registerSeat.findMany({
