@@ -1,4 +1,3 @@
-import { parseBigIntToString } from "../../../../public/ts/utils";
 import { PrismaClient } from "@prisma/client";
 import AppError from "../../../errors/AppError";
 import {
@@ -37,17 +36,13 @@ class ProtocolsRepository implements IProtocolReposity {
       },
     });
 
-    const parsedId = parseBigIntToString(protocol.id);
-
-    return { ...protocol, id: parsedId };
+    return protocol;
   }
 
   public async listAllProtocols(): Promise<IProtocol[]> {
     const protocols = await this.prisma.protocol.findMany();
 
-    return protocols.map(({ id, ...props }) => {
-      return { ...props, id: parseBigIntToString(id) };
-    });
+    return protocols;
   }
 
   public async readOneProtocol(id: number): Promise<IProtocol | null> {
@@ -57,9 +52,7 @@ class ProtocolsRepository implements IProtocolReposity {
       },
     });
 
-    const parsedId = parseBigIntToString(protocol?.id);
-
-    return { ...protocol, id: parsedId };
+    return protocol;
   }
 
   public async updateProtocol(

@@ -21,7 +21,7 @@ model User {
 model Schedule {
   id           String   @id @default(uuid())
   cicle_number Int
-  id_protocol  BigInt   @unique
+  id_protocol  Int   @unique
   id_patient   String   @unique
   date         DateTime
   patient      Patient  @relation(fields: [id_patient], references: [id])
@@ -66,7 +66,7 @@ model RegisterSeat {
   id                    String   @id @default(uuid())
   id_seat               Int      @unique
   id_patient            String   @unique
-  id_protocol           BigInt   @unique
+  id_protocol           Int   @unique
   checkin_timestamp     String   @db.VarChar(50)
   checkout_timestamp    String   @db.VarChar(50)
   checkin_professional  String   @db.VarChar(255)
@@ -80,7 +80,7 @@ model RegisterSeat {
 }
 
 model Protocol {
-  id            BigInt        @id @default(autoincrement())
+  id            Int        @id @default(autoincrement()) @db.Oid
   name          String        @unique
   volume        Float         @db.Real
   description   String        @db.VarChar(255)

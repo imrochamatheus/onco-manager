@@ -10,7 +10,7 @@ interface IProtocol
     IProtocolCreate,
     "name" | "volume" | "description" | "infusion_time"
   > {
-  id?: String;
+  id?: number;
 }
 
 interface IProtocolUpdate {
