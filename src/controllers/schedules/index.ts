@@ -10,7 +10,7 @@ import { CreateScheduleCtrl } from "./createSchedule.ctrl";
 import { DeleteScheduleByIdCtrl } from "./deleteScheduleById.ctrl";
 import { GetAllSchedulesCtrl } from "./getAllSchedules.ctrl";
 import { GetScheduleByIdCtrl } from "./getScheduleById.ctrl";
-import { PatchScheduleByIdCtrl } from "./patchScheduleById";
+import { PatchScheduleByIdCtrl } from "./patchScheduleById.ctrl";
 
 const createScheduleCtrl = new CreateScheduleCtrl(createScheduleSvc);
 const getAllSchedulesCtrl = new GetAllSchedulesCtrl(getAllSchedulesSvc);
