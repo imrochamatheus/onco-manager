@@ -68,10 +68,10 @@ model RegisterSeat {
   id_patient            String   @unique
   id_protocol           Int   @unique
   checkin_timestamp     String   @db.VarChar(50)
-  checkout_timestamp    String   @db.VarChar(50)
-  checkin_professional  String   @db.VarChar(255)
+  checkout_timestamp    String?   @db.VarChar(50)
+  checkin_professional  String?   @db.VarChar(255)
   checkout_professional String   @db.VarChar(255)
-  notes                 String   @db.VarChar(255)
+  notes                 String?   @db.VarChar(255)
   patient               Patient  @relation(fields: [id_patient], references: [id])
   protocol              Protocol @relation(fields: [id_protocol], references: [id])
   seat                  Seat     @relation(fields: [id_seat], references: [id])
