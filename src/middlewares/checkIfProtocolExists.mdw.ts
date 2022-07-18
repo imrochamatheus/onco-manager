@@ -6,8 +6,13 @@ const checkIfProtocolExists = async (
   res: Response,
   next: NextFunction
 ) => {
-  const id = Number(req.params.id);
+  let id = Number(req.params.id);
+  const data = req.body;
   const prisma = new PrismaClient();
+
+  if (!id && data.id_protocol) {
+    id = data.id_protocol;
+  }
 
   try {
     const protocol = await prisma.protocol.findUnique({
