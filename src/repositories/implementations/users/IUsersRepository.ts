@@ -1,4 +1,4 @@
-import { IUser, IUserCreate } from "../../interfaces/users.interfaces";
+import { IUser, IUserCreate } from "../../../interfaces/users.interfaces";
 
 interface IUsersRepository {
   list(): Promise<IUser[]>;

@@ -1,13 +1,15 @@
-import { IRegisterSeat, IRegisterSeatDate } from "../../interfaces/registerSeat.interface";
+import {
+  IRegisterSeat,
+  IRegisterSeatDate,
+} from "../../interfaces/registerSeat.interface";
 import { IRegisterSeatRepository } from "../../repositories/implementations/IRegisterSeatRepository";
 
-
 class ListRelatoriesService {
-  constructor(private registerSeatsRepository: IRegisterSeatRepository){}
+  constructor(private registerSeatsRepository: IRegisterSeatRepository) {}
 
-  async execute({ filter_date }: IRegisterSeatDate): Promise<IRegisterSeat[]>{
+  async execute({ filter_date }: IRegisterSeatDate): Promise<IRegisterSeat[]> {
     const relatories = await this.registerSeatsRepository.listRelatories({
-      filter_date
+      filter_date,
     });
 
     /*
@@ -24,6 +26,5 @@ class ListRelatoriesService {
     return relatories;
   }
 }
-
 
 export { ListRelatoriesService };

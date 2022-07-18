@@ -5,15 +5,19 @@ interface IProtocolCreate {
   infusion_time: string;
 }
 
-interface IProtocol extends IProtocolCreate {
+interface IProtocol
+  extends Omit<
+    IProtocolCreate,
+    "name" | "volume" | "description" | "infusion_time"
+  > {
   id?: number;
 }
 
 interface IProtocolUpdate {
-  name?:string;
+  name?: string;
   volume?: number;
   description?: string;
   infusion_time?: string;
 }
 
-export {IProtocolCreate, IProtocol, IProtocolUpdate}
+export { IProtocolCreate, IProtocol, IProtocolUpdate };
