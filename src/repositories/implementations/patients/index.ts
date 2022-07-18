@@ -4,13 +4,24 @@ import {
   IPatientByIdReq,
   IPatientCreateReq,
 } from "../../../interfaces/patient.interface";
-import { IPatientRepository } from "../IPatientRepository";
+import { IPatientRepository } from "./IPatientRepository";
 
 class PatientRepository implements IPatientRepository {
   prisma: PrismaClient;
 
   constructor() {
     this.prisma = new PrismaClient();
+  }
+  async getPatientByMedicalRecordsNumber(
+    medical_records_number: string
+  ): Promise<IPatient | null> {
+    const patient = await this.prisma.patient.findUnique({
+      where: {
+        medical_records_number,
+      },
+    });
+
+    return patient;
   }
 
   public async createPatient({

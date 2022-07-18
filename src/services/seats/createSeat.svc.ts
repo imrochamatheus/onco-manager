@@ -1,6 +1,6 @@
 import AppError from "../../errors/AppError";
 import { ISeatCreate, ISeat } from "../../interfaces/seats.interfaces";
-import { ISeatsRepository } from "../../repositories/implementations/ISeatsRepository";
+import { ISeatsRepository } from "../../repositories/implementations/seats/ISeatsRepository";
 
 class CreateSeatService {
   constructor(private seatRepository: ISeatsRepository) {}

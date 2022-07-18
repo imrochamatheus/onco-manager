@@ -1,6 +1,6 @@
 export interface IPatientCreateReq {
   name: string;
-  medical_records_number: number;
+  medical_records_number: string;
   contact: string;
 }
 

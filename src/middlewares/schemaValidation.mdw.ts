@@ -11,7 +11,7 @@ const schemaValidation =
       next();
     } catch (error) {
       if (error instanceof ValidationError)
-        return res.json(error.errors.join(", "));
+        return res.json({ message: error.errors.join(", ") });
     }
   };
 

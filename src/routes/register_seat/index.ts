@@ -4,6 +4,9 @@ import { createRegisterSeatController, listPatientHistoryController, listRelator
 
 const registerSeatRouter = Router();
 
+registerSeatRouter.post("/", (req: Request, res: Response) => {
+  res.status(200).json({ message: "hello" });
+});
 registerSeatRouter.post("/register_seat", (req: Request, res: Response) => {
   createRegisterSeatController.handle(req, res);
 });
@@ -13,6 +16,5 @@ registerSeatRouter.get("/relatories/:date", (req: Request, res: Response) => {
 registerSeatRouter.get("/:patient_id/history", (req: Request, res: Response) => {
   listPatientHistoryController.handle(req, res);
 });
-
 
 export { registerSeatRouter };

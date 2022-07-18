@@ -1,22 +1,19 @@
 import { Request, Response } from "express";
 import { CreateRegisterSeatService } from "../../services/register_seat/createRegisterSeat.svc";
 
+export class CreateRegisterSeatController {
+  constructor(private createRegisterSeatService: CreateRegisterSeatService) {}
 
-export class CreateRegisterSeatController{
+  async handle(req: Request, res: Response): Promise<Response> {
+    const registerSeatData = { ...req.body };
 
-  constructor(private createRegisterSeatService: CreateRegisterSeatService){}
-
-  async handle(req: Request, res: Response): Promise<Response>{
-
-    const registerSeatData = {...req.body};
-
-    const newRegisterSeat = await this.createRegisterSeatService.execute(registerSeatData);
+    const newRegisterSeat = await this.createRegisterSeatService.execute(
+      registerSeatData
+    );
 
     return res.status(201).json({
       message: "Register Seat Successfully Created",
-      data: newRegisterSeat
+      data: newRegisterSeat,
     });
-    
-  };
-};
-
+  }
+}

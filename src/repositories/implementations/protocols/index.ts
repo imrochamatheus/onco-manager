@@ -1,10 +1,12 @@
+import { parseBigIntToString } from "../../../../public/ts/utils";
 import { PrismaClient } from "@prisma/client";
+import AppError from "../../../errors/AppError";
 import {
   IProtocolCreate,
   IProtocol,
   IProtocolUpdate,
 } from "../../../interfaces/protocols.interfaces";
-import { IProtocolReposity } from "../IProtocolsRepository";
+import { IProtocolReposity } from "./IProtocolsRepository";
 
 class ProtocolsRepository implements IProtocolReposity {
   prisma: PrismaClient;
@@ -13,12 +15,19 @@ class ProtocolsRepository implements IProtocolReposity {
     this.prisma = new PrismaClient();
   }
 
-  public async createProtocol({
+  async createProtocol({
     name,
     description,
     volume,
     infusion_time,
   }: IProtocolCreate): Promise<IProtocol> {
+    const protocolAlreadyExists = await this.prisma.protocol.findUnique({
+      where: { name },
+    });
+
+    if (protocolAlreadyExists)
+      throw new AppError("Protocol already exists", 400);
+
     const protocol = await this.prisma.protocol.create({
       data: {
         name,
@@ -28,41 +37,49 @@ class ProtocolsRepository implements IProtocolReposity {
       },
     });
 
-    return protocol;
+    const parsedId = parseBigIntToString(protocol.id);
+
+    return { ...protocol, id: parsedId };
   }
 
   public async listAllProtocols(): Promise<IProtocol[]> {
     const protocols = await this.prisma.protocol.findMany();
 
-    return protocols;
+    return protocols.map(({ id, ...props }) => {
+      return { ...props, id: parseBigIntToString(id) };
+    });
   }
 
-  public async readOneProtocol(protocol_id: string): Promise<IProtocol> {
+  public async readOneProtocol(id: number): Promise<IProtocol | null> {
     const protocol = await this.prisma.protocol.findUnique({
-      where: protocol_id,
+      where: {
+        id,
+      },
     });
 
-    return protocol;
+    const parsedId = parseBigIntToString(protocol?.id);
+
+    return { ...protocol, id: parsedId };
   }
 
   public async updateProtocol(
-    protocol_id: string,
+    id: number,
     data: IProtocolUpdate
   ): Promise<void> {
-    
     await this.prisma.protocol.update({
-        data: data,
-        where: protocol_id
-    })
-
+      data: data,
+      where: {
+        id,
+      },
+    });
   }
 
-  public async deleteProtocol(protocol_id: string): Promise<void> {
+  public async deleteProtocol(id: number): Promise<void> {
     await this.prisma.protocol.delete({
-        where: {
-            id: protocol_id
-        }
-    })
+      where: {
+        id,
+      },
+    });
   }
 }
 

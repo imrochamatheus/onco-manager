@@ -3,7 +3,7 @@ import {
   IPatientByIdReq,
   IPatientCreateReq,
   IPatientPatch,
-} from "../../interfaces/patient.interface";
+} from "../../../interfaces/patient.interface";
 
 interface IPatientRepository {
   createPatient({
@@ -15,6 +15,10 @@ interface IPatientRepository {
   getAllPatients(): Promise<IPatient[]>;
 
   getPatientById({ patient_id }: IPatientByIdReq): Promise<IPatient | null>;
+
+  getPatientByMedicalRecordsNumber(
+    medical_records_number: string
+  ): Promise<IPatient | null>;
 
   patchPatientById(
     { patient_id }: IPatientByIdReq,

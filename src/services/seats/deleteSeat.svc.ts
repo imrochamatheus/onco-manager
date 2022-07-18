@@ -1,5 +1,5 @@
 import { ISeatId } from "../../interfaces/seats.interfaces";
-import { ISeatsRepository } from "../../repositories/implementations/ISeatsRepository";
+import { ISeatsRepository } from "../../repositories/implementations/seats/ISeatsRepository";
 
 class DeleteSeatService {
   constructor(private seatRepository: ISeatsRepository) {}

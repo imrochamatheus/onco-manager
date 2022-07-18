@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Request, Response, Router, NextFunction } from "express";
 // import { PatientCtrls } from "../../controllers/patients";
 import {
   createPatientCtrl,
@@ -7,14 +7,19 @@ import {
   getPatientByIdCtrl,
   patchPatientByIdCtrl,
 } from "../../controllers/patients";
+import schemaValidation from "../../middlewares/schemaValidation.mdw";
+import { patientCreateSchema, patientPatchSchema } from "../../schemas/patient";
 
 const patientsRouter = Router();
 
 //create patient
-patientsRouter.post("/", (req: Request, res: Response) => {
-  createPatientCtrl.handle(req, res);
-  // PatientCtrls.create.handle(req, res);
-});
+patientsRouter.post(
+  "/",
+  schemaValidation(patientCreateSchema),
+  (req: Request, res: Response, next: NextFunction) => {
+    createPatientCtrl.handle(req, res, next);
+  }
+);
 
 //get all patients
 patientsRouter.get("/", (req: Request, res: Response) => {
@@ -22,18 +27,28 @@ patientsRouter.get("/", (req: Request, res: Response) => {
 });
 
 //get patient by id
-patientsRouter.get("/:id", (req: Request, res: Response) => {
-  getPatientByIdCtrl.handle(req, res);
-});
+patientsRouter.get(
+  "/:id",
+  (req: Request, res: Response, next: NextFunction) => {
+    getPatientByIdCtrl.handle(req, res, next);
+  }
+);
 
 //edit patient by id
-patientsRouter.patch("/:id", (req: Request, res: Response) => {
-  patchPatientByIdCtrl.handle(req, res);
-});
+patientsRouter.patch(
+  "/:id",
+  schemaValidation(patientPatchSchema),
+  (req: Request, res: Response, next: NextFunction) => {
+    patchPatientByIdCtrl.handle(req, res, next);
+  }
+);
 
 //delete patient by id
-patientsRouter.delete("/:id", (req: Request, res: Response) => {
-  deletePatientByIdCtrl.handle(req, res);
-});
+patientsRouter.delete(
+  "/:id",
+  (req: Request, res: Response, next: NextFunction) => {
+    deletePatientByIdCtrl.handle(req, res, next);
+  }
+);
 
 export { patientsRouter };
