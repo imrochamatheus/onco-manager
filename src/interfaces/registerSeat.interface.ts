@@ -1,18 +1,28 @@
 interface IRegisterSeatCreate {
   id_patient: string;
-  id_protocol: bigint;
+  id_protocol: number;
+  id_seat: number;
+  full_name: string;
+
+  // checkin_timestamp: string;
+  // checkin_professional: string;
+
+  // checkout_timestamp: string;
+  // checkout_professional: string;
+
+  // notes: string;
+}
+
+interface IRegisterSeatResponse {
+  id_patient: string;
+  id_protocol: number;
   id_seat: number;
 
   checkin_timestamp: string;
   checkin_professional: string;
-
-  checkout_timestamp: string;
-  checkout_professional: string;
-
-  notes: string;
 }
 
-interface IRegisterSeat extends IRegisterSeatCreate {
+interface IRegisterSeat extends Omit<IRegisterSeatResponse, "full_name"> {
   id: string;
 }
 

@@ -12,4 +12,6 @@ const listRelatoriesController = new ListRelatoriesController(
   listRelatoriesService
 );
 
+// const updateRegisterSeatController = new Update
+
 export { createRegisterSeatController, listRelatoriesController };

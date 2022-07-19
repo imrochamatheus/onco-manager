@@ -17,22 +17,15 @@ class RegisterSeatRepository implements IRegisterSeatRepository {
     id_patient,
     id_protocol,
     id_seat,
-    checkin_timestamp,
-    checkin_professional,
-    checkout_timestamp,
-    checkout_professional,
-    notes,
+    full_name,
   }: IRegisterSeatCreate): Promise<IRegisterSeat> {
     const registerSeat = await this.prisma.registerSeat.create({
       data: {
         id_patient,
         id_protocol,
         id_seat,
-        checkin_timestamp,
-        checkin_professional,
-        checkout_timestamp,
-        checkout_professional,
-        notes,
+        checkin_timestamp: Date.now().toString(),
+        checkin_professional: full_name,
       },
     });
 

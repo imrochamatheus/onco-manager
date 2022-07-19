@@ -9,11 +9,7 @@ interface IRegisterSeatRepository {
     id_patient,
     id_protocol,
     id_seat,
-    checkin_timestamp,
-    checkin_professional,
-    checkout_timestamp,
-    checkout_professional,
-    notes,
+    full_name,
   }: IRegisterSeatCreate): Promise<IRegisterSeat>;
 
   listRelatories({ filter_date }: IRegisterSeatDate): Promise<IRegisterSeat[]>;

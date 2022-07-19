@@ -11,22 +11,24 @@ class CreateRegisterSeatService {
     id_patient,
     id_protocol,
     id_seat,
-    checkin_timestamp,
-    checkin_professional,
-    checkout_timestamp,
-    checkout_professional,
-    notes,
-  }: IRegisterSeatCreate): Promise<IRegisterSeat> {
+    full_name,
+  }: // checkin_timestamp,
+  // checkin_professional,
+  // checkout_timestamp,
+  // checkout_professional,
+  // notes,
+  IRegisterSeatCreate): Promise<IRegisterSeat> {
     const createRegisterSeat =
       await this.registerSeatRepository.createRegisterSeat({
+        full_name,
         id_patient,
         id_protocol,
         id_seat,
-        checkin_timestamp,
-        checkin_professional,
-        checkout_timestamp,
-        checkout_professional,
-        notes,
+        // checkin_timestamp,
+        // checkin_professional,
+        // checkout_timestamp,
+        // checkout_professional,
+        // notes,
       });
 
     return createRegisterSeat;
