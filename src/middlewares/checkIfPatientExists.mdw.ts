@@ -1,27 +1,25 @@
-import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
+import { NextFunction, Request, Response } from "express";
 
-const checkIfProtocolExists = async (
+const checkIfPatientExistsMw = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  let id = Number(req.params.id);
+  let { id } = req.params;
   const data = req.body;
   const prisma = new PrismaClient();
 
-  if (!id && data.id_protocol) {
-    id = data.id_protocol;
+  if (!id && data.id_patient) {
+    id = data.id_patient;
   }
 
   try {
-    const protocol = await prisma.protocol.findUnique({
+    await prisma.patient.findUniqueOrThrow({
       where: {
         id,
       },
     });
-
-    if (!protocol) throw new Error("Protocol not found");
 
     next();
   } catch (error) {
@@ -31,4 +29,4 @@ const checkIfProtocolExists = async (
   }
 };
 
-export default checkIfProtocolExists;
+export default checkIfPatientExistsMw;
