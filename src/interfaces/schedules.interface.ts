@@ -1,3 +1,5 @@
+import { Moment } from "moment";
+
 export interface IScheduleCreate {
   id_protocol: number;
   id_patient: string;
@@ -7,10 +9,22 @@ export interface IScheduleCreate {
 
 export interface ISchedule extends IScheduleCreate {
   id: string;
+  final_date?: Moment;
+  protocol?: {
+    id: number;
+    name: string;
+    volume: number;
+    description: string;
+    infusion_time: string;
+  };
 }
 
 export interface IScheduleByIdReq {
   schedule_id: string;
+}
+
+export interface IScheduleByDate {
+  schedule_date: string;
 }
 
 export interface ISchedulePatch {
