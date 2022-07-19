@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import AppError from "../../../errors/AppError";
 import {
   ISchedule,
+  IScheduleByDate,
   IScheduleByIdReq,
   IScheduleCreate,
   ISchedulePatch,
@@ -34,7 +35,9 @@ class ScheduleRepository implements IScheduleRepository {
   }
 
   public async getAllSchedules(): Promise<ISchedule[]> {
-    const allSchedules = await this.prisma.schedule.findMany();
+    const allSchedules = await this.prisma.schedule.findMany({
+      include: { protocol: true },
+    });
     return allSchedules;
   }
 
@@ -43,7 +46,27 @@ class ScheduleRepository implements IScheduleRepository {
   }: IScheduleByIdReq): Promise<ISchedule | null> {
     const schedule = await this.prisma.schedule.findUnique({
       where: { id: schedule_id },
+      include: { protocol: true },
     });
+    return schedule;
+  }
+
+  public async getScheduleByDate({
+    schedule_date,
+  }: IScheduleByDate): Promise<ISchedule[] | void> {
+    const timeOpen = `${schedule_date}T07:00:00.000Z`;
+    const timeClosed = `${schedule_date}T19:00:00.000Z`;
+
+    const schedule = await this.prisma.schedule.findMany({
+      where: {
+        date: {
+          gte: new Date(timeOpen),
+          lte: new Date(timeClosed),
+        },
+      },
+      include: { protocol: true },
+    });
+
     return schedule;
   }
 
