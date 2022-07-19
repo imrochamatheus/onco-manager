@@ -5,7 +5,10 @@ export const scheduleCreateSchema = yup
   .shape({
     id_protocol: yup.number().required(),
     id_patient: yup.string().required(),
-    cicle_number: yup.number().required(),
+    cicle_number: yup
+      .number()
+      .required()
+      .lessThan(100000, "Cicle number must be less than 100000"),
     date: yup
       .string()
       .transform((value) => new Date(value))
