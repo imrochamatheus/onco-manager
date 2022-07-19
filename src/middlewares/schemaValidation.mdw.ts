@@ -5,7 +5,11 @@ const schemaValidation =
   (schema: AnyObjectSchema) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const validatedUser = await schema.validate(req.body);
+      const validatedUser = await schema.validate(req.body, {
+        strict: true,
+        abortEarly: false,
+        stripUnknown: true,
+      });
 
       req.body = validatedUser;
       next();

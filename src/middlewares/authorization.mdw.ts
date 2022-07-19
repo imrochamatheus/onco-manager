@@ -13,7 +13,7 @@ interface jwtPayload {
 const authorizarionMiddleware =
   (access: Access[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
-    const { authorization } = req.headers;
+    const { authorization } = { ...req.headers };
 
     if (!authorization)
       return res.status(401).json({ message: "Missing authorization headers" });
@@ -24,15 +24,15 @@ const authorizarionMiddleware =
       `${process.env.SECRET_KEY}`
     ) as jwtPayload;
 
+    req.full_name = full_name;
+
     const prisma = new PrismaClient();
-    const professionalStillExists = prisma.professionals.findUnique({
+    const professionalStillExists = prisma.professionals.findUniqueOrThrow({
       where: { id },
     });
 
     if (!professionalStillExists || !access.includes(access_level))
       return res.status(401).json({ message: "Unauthorized access" });
-
-    req.body.full_name = full_name;
 
     next();
   };

@@ -10,7 +10,9 @@ export class CreateRegisterSeatController {
     next: NextFunction
   ): Promise<Response | void> {
     const registerSeatData = { ...req.body };
-    // console.log(registerSeatData.full_name);
+    const { full_name } = req;
+
+    registerSeatData.full_name = full_name;
 
     try {
       const newRegisterSeat = await this.createRegisterSeatService.execute(

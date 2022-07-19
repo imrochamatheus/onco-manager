@@ -34,7 +34,7 @@ patientsRouter.get(
 
 //get patient by id
 patientsRouter.get(
-  "/:id",
+  "/:patient_id",
   authorizarionMiddleware(["master", "staff", "operator"]),
   checkIfPatientExistsMw,
   (req: Request, res: Response, next: NextFunction) => {
@@ -44,7 +44,7 @@ patientsRouter.get(
 
 //edit patient by id
 patientsRouter.patch(
-  "/:id",
+  "/:patient_id",
   authorizarionMiddleware(["master", "staff"]),
   checkIfPatientExistsMw,
   schemaValidation(patientPatchSchema),
@@ -55,7 +55,7 @@ patientsRouter.patch(
 
 //delete patient by id
 patientsRouter.delete(
-  "/:id",
+  "/:patient_id",
   authorizarionMiddleware(["master", "staff"]),
   checkIfPatientExistsMw,
   (req: Request, res: Response, next: NextFunction) => {

@@ -11,6 +11,9 @@ export class UpdateRegisterSeatController {
   ): Promise<Response | void> {
     const { id_register_seat } = req.params;
     const registerSeatData = { ...req.body };
+    const { full_name } = req;
+
+    registerSeatData.full_name = full_name;
 
     try {
       await this.updateRegisterSeatService.execute(

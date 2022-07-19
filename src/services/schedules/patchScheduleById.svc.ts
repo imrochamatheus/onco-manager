@@ -11,10 +11,7 @@ class PatchScheduleByIdSvc {
     { schedule_id }: IScheduleByIdReq,
     data: ISchedulePatch
   ): Promise<void> {
-    return await this.scheduleRepository.patchScheduleById(
-      { schedule_id },
-      data
-    );
+    await this.scheduleRepository.patchScheduleById({ schedule_id }, data);
   }
 }
 export { PatchScheduleByIdSvc };

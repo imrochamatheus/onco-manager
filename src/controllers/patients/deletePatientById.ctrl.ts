@@ -9,7 +9,7 @@ class DeletePatientByIdCtrl {
     res: Response,
     next: NextFunction
   ): Promise<Response | undefined> {
-    const patient_id = req.params.id;
+    const { patient_id } = req.params;
 
     try {
       await this.deletePatientByIdSvc.execute({ patient_id });

@@ -14,7 +14,10 @@ import checkIfProtocolExists from "../../middlewares/checkIfProtocolExists.mdw";
 import checkIfScheduleExistsMw from "../../middlewares/checkIfScheduleExists.mdw";
 import schemaValidation from "../../middlewares/schemaValidation.mdw";
 
-import { scheduleCreateSchema } from "../../schemas/schedules";
+import {
+  scheduleCreateSchema,
+  schedulePatchSchema,
+} from "../../schemas/schedules";
 
 const schedulesRouter = Router();
 
@@ -55,9 +58,9 @@ schedulesRouter.get(
 schedulesRouter.patch(
   "/:id",
   checkIfScheduleExistsMw,
-  schemaValidation(scheduleCreateSchema),
-  (req: Request, res: Response) => {
-    patchScheduleByIdCtrl.handle(req, res);
+  schemaValidation(schedulePatchSchema),
+  (req: Request, res: Response, next: NextFunction) => {
+    patchScheduleByIdCtrl.handle(req, res, next);
   }
 );
 

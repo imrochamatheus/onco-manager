@@ -8,7 +8,8 @@ class GetPatientByIdCtrl {
     res: Response,
     next: NextFunction
   ): Promise<Response | undefined> {
-    const patient_id = req.params.id;
+    const { patient_id } = req.params;
+
     try {
       const patient = await this.getPatientsByIdSvc.execute({ patient_id });
 

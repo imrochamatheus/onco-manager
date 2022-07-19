@@ -10,8 +10,10 @@ class PatchPatientByIdCtrl {
     res: Response,
     next: NextFunction
   ): Promise<Response | void> {
-    const patient_id = req.params.id;
+    const { patient_id } = req.params;
     const patient_data = req.body;
+
+    delete req.body.full_name;
 
     try {
       await this.patchPatientByIdSvc.execute({ patient_id }, patient_data);
