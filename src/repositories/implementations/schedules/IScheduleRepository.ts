@@ -1,5 +1,6 @@
 import {
   ISchedule,
+  IScheduleByDate,
   IScheduleByIdReq,
   IScheduleCreate,
   ISchedulePatch,
@@ -16,6 +17,10 @@ interface IScheduleRepository {
   getAllSchedules(): Promise<ISchedule[]>;
 
   getScheduleById({ schedule_id }: IScheduleByIdReq): Promise<ISchedule | null>;
+
+  getScheduleByDate({
+    schedule_date,
+  }: IScheduleByDate): Promise<ISchedule[] | void>;
 
   patchScheduleById(
     { schedule_id }: IScheduleByIdReq,
