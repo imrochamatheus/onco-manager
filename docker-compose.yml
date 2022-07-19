@@ -7,33 +7,32 @@ services:
     environment:
       - POSTGRES_USER=johndoe
       - POSTGRES_PASSWORD=randompassword
-      - POSTGRES_DB=mydb
+      - POSTGRES_DB=tests
     ports:
       - 5431:5432
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    restart: unless-stopped
-
-  api:
-    container_name: api
-    command: bash -c "
-      yarn prisma generate && yarn prisma migrate dev && yarn dev"
-    stdin_open: true
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - postgres
-    ports:
-      - 3000:3000
-    environment:
-      - PORT=3000
-    env_file:
-      - .env
     restart: always
-    volumes:
-      - .:/app
+    # volumes:
+    #   - postgres-data:/var/lib/postgresql/data
 
-volumes:
-  postgres-data:
-    driver: local
+  # api:
+  #   container_name: api
+  #   command: bash -c "
+  #     yarn prisma generate && yarn prisma migrate dev && yarn dev"
+  #   stdin_open: true
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     - PORT=3000
+  #   env_file:
+  #     - .env
+  #   restart: always
+  # volumes:
+  #   - .:/app
+# volumes:
+#   postgres-data:
+#     driver: local
