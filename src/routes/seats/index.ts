@@ -17,4 +17,6 @@ seatsRouter.delete("/:id", (req: Request, res: Response) => {
   deleteSeatController.handle(req, res);
 });
 
+//comment
+
 export { seatsRouter };
