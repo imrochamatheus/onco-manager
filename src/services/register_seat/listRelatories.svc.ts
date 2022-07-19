@@ -1,3 +1,4 @@
+import AppError from "../../errors/AppError";
 import {
   IRegisterSeat,
   IRegisterSeatDate,
@@ -7,21 +8,15 @@ import { IRegisterSeatRepository } from "../../repositories/implementations/regi
 class ListRelatoriesService {
   constructor(private registerSeatsRepository: IRegisterSeatRepository) {}
 
-  async execute({ filter_date }: IRegisterSeatDate): Promise<IRegisterSeat[]> {
+  async execute({
+    filter_date,
+  }: IRegisterSeatDate): Promise<IRegisterSeat[] | void> {
+    if (!filter_date.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/))
+      throw new AppError("Invalid date format", 400);
+
     const relatories = await this.registerSeatsRepository.listRelatories({
       filter_date,
     });
-
-    /*
-      COLOCAR
-      ERRO
-      CASO
-      NÃO
-      ENCONTRE
-      RELATORIO
-      DA DATA
-      FILTRADA
-    */
 
     return relatories;
   }

@@ -30,4 +30,14 @@ interface IRegisterSeatDate {
   filter_date: string;
 }
 
-export { IRegisterSeatCreate, IRegisterSeat, IRegisterSeatDate };
+interface IRegisterSeatUpdate {
+  full_name: string;
+  notes?: string | null;
+}
+
+export {
+  IRegisterSeatCreate,
+  IRegisterSeat,
+  IRegisterSeatDate,
+  IRegisterSeatUpdate,
+};

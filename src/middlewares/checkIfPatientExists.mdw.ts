@@ -6,18 +6,18 @@ const checkIfPatientExistsMw = async (
   res: Response,
   next: NextFunction
 ) => {
-  let { id } = req.params;
+  let { patient_id } = req.params;
   const data = req.body;
   const prisma = new PrismaClient();
 
-  if (!id && data.id_patient) {
-    id = data.id_patient;
+  if (!patient_id && data.id_patient) {
+    patient_id = data.id_patient;
   }
 
   try {
     await prisma.patient.findUniqueOrThrow({
       where: {
-        id,
+        id: patient_id,
       },
     });
 

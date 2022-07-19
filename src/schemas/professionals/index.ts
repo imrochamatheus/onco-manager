@@ -6,14 +6,15 @@ const professionalSchema = yup
     full_name: yup
       .string()
       .required()
-      .matches(/^[A-zà-úÀ-Ú]+$/, "Must contain only letters")
+      .matches(/^[A-zà-úÀ-Ú| ]+$/, "Must contain only letters")
       .max(255, "Must be a maximum of 255 characters"),
     email: yup.string().email().required(),
     cartao_nacional_saude: yup
       .string()
       .required()
       .matches(/[^A-z]/, "Must contain only numbers")
-      .max(255, "Must be a maximum of 255 characters"),
+      .min(15, "CNS must be a minimun of 15 characters")
+      .max(15, "CNS must be a maximum of 15 characters"),
     password: yup
       .string()
       .required()
@@ -36,13 +37,13 @@ const professionalPatchSchema = yup
   .shape({
     full_name: yup
       .string()
-      .matches(/^[A-zà-úÀ-Ú]+$/, "Must contain only letters")
+      .matches(/^[A-zà-úÀ-Ú| ]+$/, "Must contain only letters")
       .max(255, "Must be a maximum of 255 characters"),
     email: yup.string().email(),
     cartao_nacional_saude: yup
       .string()
       .matches(/[^A-z]/, "Must contain only numbers")
-      .max(255, "Must be a maximum of 255 characters"),
+      .max(15, "CNS must be a maximum of 15 characters"),
     password: yup
       .string()
       .min(8, "The password must have 8 characters at least."),
