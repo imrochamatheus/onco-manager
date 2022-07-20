@@ -4,13 +4,14 @@ import {
   ISeat,
   ISeatId,
 } from "../../../interfaces/seats.interfaces";
+import { prisma } from "../../../client";
 import { ISeatsRepository } from "./ISeatsRepository";
 
 class SeatsRepository implements ISeatsRepository {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
 
   public async createSeat({ seat_number }: ISeatCreate): Promise<ISeat> {

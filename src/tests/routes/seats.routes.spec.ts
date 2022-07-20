@@ -1,11 +1,8 @@
-import { ISeatCreate } from "../../interfaces/seats.interfaces";
-import { PrismaClient } from "@prisma/client";
 import { IProfessional } from "../../interfaces/professionals.interface";
+import { prisma } from "../../client";
 import request from "supertest";
 import bcrypt from "bcrypt";
 import app from "../..";
-
-const prisma = new PrismaClient();
 
 let professional: IProfessional;
 

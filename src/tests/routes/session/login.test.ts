@@ -1,27 +1,25 @@
-import { PrismaClient } from "@prisma/client";
 import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
 import { ProfessionalUtils } from "../../utils/professional.util";
+import { prisma } from "../../../client";
 import request from "supertest";
 import app from "../../..";
 
 describe("POST - /login", () => {
-  const prismaClient = new PrismaClient();
-
   let professional: IProfessionalCreate;
 
   beforeAll(async () => {
-    await prismaClient.$connect();
+    await prisma.$connect();
 
     professional = ProfessionalUtils.data.manager;
     await ProfessionalUtils.createProfissional(professional);
   });
 
   afterAll(async () => {
-    const deleteProfessional = prismaClient.professionals.deleteMany();
+    const deleteProfessional = prisma.professionals.deleteMany();
 
-    await prismaClient.$transaction([deleteProfessional]);
+    await prisma.$transaction([deleteProfessional]);
 
-    await prismaClient.$disconnect();
+    await prisma.$disconnect();
   });
 
   it("should log a registered user", async () => {
