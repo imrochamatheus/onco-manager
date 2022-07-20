@@ -1,14 +1,15 @@
+
 // import { PrismaClient } from '@prisma/client';
 // import request from 'supertest';
 // import app from '../../..';
 // import { ProfessionalUtils } from '../../utils/professional.util';
 // import bcrypt from 'bcrypt';
 
+
 // let id: number;
 
 // let professionalStaff = ProfessionalUtils.data.staff;
 // let professionalOperator = ProfessionalUtils.data.operator;
-
 // const prisma = new PrismaClient();
 
 // describe('CRUD - /seats', () => {
@@ -45,8 +46,8 @@
 
 //       const login = await request(app).post('/login').send({ email, password });
 
-//       const { token } = login.body;
 
+//       const { token } = login.body;
 //       const resp = await request(app)
 //         .post('/seats')
 //         .send({
@@ -57,7 +58,6 @@
 //       expect(resp.status).toBe(201);
 //       expect(resp.body).toHaveProperty('message');
 //       expect(resp.body.data).toHaveProperty('id');
-
 //       id = resp.body.data.id;
 //     });
 
@@ -65,6 +65,7 @@
 //       const { email, password } = professionalOperator;
 
 //       const login = await request(app).post('/login').send({ email, password });
+
 
 //       const { token } = login.body;
 
@@ -100,7 +101,6 @@
 //       const { email, password } = professionalOperator;
 
 //       const login = await request(app).post('/login').send({ email, password });
-
 //       const { token } = login.body;
 
 //       const resp = await request(app)
@@ -146,7 +146,6 @@
 //       const login = await request(app).post('/login').send({ email, password });
 
 //       const { token } = login.body;
-
 //       const resp = await request(app)
 //         .delete(`/seats/${id}`)
 //         .set('Authorization', `Bearer ${token}`);
@@ -168,3 +167,4 @@
 //   });
 
 // });
+

@@ -15,7 +15,10 @@ export class CreateProfessionalController {
         professionalData
       );
 
-      return res.status(201).json(newProfessional);
+      return res.status(201).json({
+        message: "Professional has successfully created",
+        data: newProfessional,
+      });
     } catch (error) {
       next(error);
     }

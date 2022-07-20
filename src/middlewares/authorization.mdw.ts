@@ -1,7 +1,7 @@
 import { Access } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../client";
 
 interface jwtPayload {
   id: string;
@@ -26,7 +26,6 @@ const authorizarionMiddleware =
 
     req.full_name = full_name;
 
-    const prisma = new PrismaClient();
     const professionalStillExists = prisma.professionals.findUniqueOrThrow({
       where: { id },
     });

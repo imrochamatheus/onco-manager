@@ -1,3 +1,4 @@
+
 // import { PrismaClient } from "@prisma/client";
 // import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
 // import { ProfessionalUtils } from "../../utils/professional.util";
@@ -57,3 +58,4 @@
 //     expect(loginResponse.body).toHaveProperty("message");
 //   });
 // });
+

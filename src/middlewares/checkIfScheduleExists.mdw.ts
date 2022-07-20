@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
+import { prisma } from "../client";
 
 const checkIfScheduleExistsMw = async (
   req: Request,
@@ -7,7 +7,6 @@ const checkIfScheduleExistsMw = async (
   next: NextFunction
 ) => {
   let { id } = req.params;
-  const prisma = new PrismaClient();
 
   try {
     await prisma.schedule.findUniqueOrThrow({
