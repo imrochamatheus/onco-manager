@@ -1,7 +1,6 @@
 import { professionalsRouter } from "./professionals";
 import { protocolsRouter } from "./protocols";
 import { patientsRouter } from "./patients";
-import { usersRouter } from "./users";
 import { seatsRouter } from "./seats";
 import { sessionsRouter } from "./sessions";
 import { Router } from "express";
@@ -11,7 +10,6 @@ import authorizarionMiddleware from "../middlewares/authorization.mdw";
 
 const router = Router();
 
-router.use("/users", usersRouter);
 router.use("/seats", seatsRouter);
 router.use("/login", sessionsRouter);
 router.use("/patients", patientsRouter);
@@ -28,5 +26,4 @@ router.use(
   registerSeatRouter
 );
 
-//comments
 export default router;
