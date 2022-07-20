@@ -123,7 +123,6 @@ describe("CRUD - /protocols", () => {
       expect(Array.isArray(resp.body)).toBe(true);
     });
 
-
     it("Should not get  one protocol without authorization token", async () => {
       const resp = await request(app).get("/protocols");
 
@@ -159,17 +158,16 @@ describe("CRUD - /protocols", () => {
         .patch(`/protocols/${id}`)
         .set("Authorization", `Bearer ${token}`);
 
-        expect(resp.status).toBe(401)
-        expect(resp.body).toHaveProperty('message')
+      expect(resp.status).toBe(401);
+      expect(resp.body).toHaveProperty("message");
     });
 
-    it('Should not update a protocol without authorization token', async () => {
+    it("Should not update a protocol without authorization token", async () => {
+      const resp = await request(app).patch(`/protocols/${id}`);
 
-        const resp = await request(app).patch(`/protocols/${id}`)
-        
-        expect(resp.status).toBe(401);
-        expect(resp.body).toHaveProperty('message');
-    })
+      expect(resp.status).toBe(401);
+      expect(resp.body).toHaveProperty("message");
+    });
   });
   describe("DELETE - /protocols/:id", () => {
     it("Should delete a protocol", async () => {
@@ -198,16 +196,15 @@ describe("CRUD - /protocols", () => {
         .delete(`/protocols/${id}`)
         .set("Authorization", `Bearer ${token}`);
 
-        expect(resp.status).toBe(401)
-        expect(resp.body).toHaveProperty('message')
+      expect(resp.status).toBe(401);
+      expect(resp.body).toHaveProperty("message");
     });
 
-    it('Should not delete a protocol without authorization token', async () => {
+    it("Should not delete a protocol without authorization token", async () => {
+      const resp = await request(app).delete(`/protocols/${id}`);
 
-        const resp = await request(app).delete(`/protocols/${id}`)
-        
-        expect(resp.status).toBe(401);
-        expect(resp.body).toHaveProperty('message');
-    })
+      expect(resp.status).toBe(401);
+      expect(resp.body).toHaveProperty("message");
+    });
   });
 });
