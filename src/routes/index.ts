@@ -22,7 +22,11 @@ router.use(
   authorizarionMiddleware(["master", "staff"]),
   schedulesRouter
 );
-router.use("/", registerSeatRouter);
+router.use(
+  "/",
+  authorizarionMiddleware(["master", "staff", "operator"]),
+  registerSeatRouter
+);
 
 //comments
 export default router;
