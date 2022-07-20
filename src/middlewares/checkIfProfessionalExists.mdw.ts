@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../client";
 
 const checkIfProfessionalExists = async (
   req: Request,
@@ -7,7 +7,6 @@ const checkIfProfessionalExists = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const prisma = new PrismaClient();
 
   try {
     await prisma.professionals.findUniqueOrThrow({

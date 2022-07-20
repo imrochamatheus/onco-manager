@@ -1,80 +1,82 @@
-import { PrismaClient } from "@prisma/client";
-import request from "supertest";
-import app from "../../..";
-import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
-import { PatientUtils } from "../../utils/patient.util";
-import { ProfessionalUtils } from "../../utils/professional.util";
 
-describe("POST - /patients", () => {
-  const prismaClient = new PrismaClient();
+// import { PrismaClient } from "@prisma/client";
+// import request from "supertest";
+// import app from "../../..";
+// import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
+// import { PatientUtils } from "../../utils/patient.util";
+// import { ProfessionalUtils } from "../../utils/professional.util";
 
-  // let professionalManager: IProfessionalCreate;
-  let professionalStaff: IProfessionalCreate;
-  let professionalOperator: IProfessionalCreate;
+// describe("POST - /patients", () => {
+//   const prismaClient = new PrismaClient();
 
-  // let managerToken: string;
-  let staffToken: string;
-  let operatorToken: string;
+//   // let professionalManager: IProfessionalCreate;
+//   let professionalStaff: IProfessionalCreate;
+//   let professionalOperator: IProfessionalCreate;
 
-  beforeAll(async () => {
-    await prismaClient.$connect();
+//   // let managerToken: string;
+//   let staffToken: string;
+//   let operatorToken: string;
 
-    // professionalManager = ProfessionalUtils.data.manager;
-    professionalStaff = ProfessionalUtils.data.staff;
-    professionalOperator = ProfessionalUtils.data.operator;
+//   beforeAll(async () => {
+//     await prismaClient.$connect();
 
-    // await ProfessionalUtils.createProfissional(professionalManager);
-    await ProfessionalUtils.createProfissional(professionalStaff);
-    await ProfessionalUtils.createProfissional(professionalOperator);
+//     // professionalManager = ProfessionalUtils.data.manager;
+//     professionalStaff = ProfessionalUtils.data.staff;
+//     professionalOperator = ProfessionalUtils.data.operator;
 
-    // managerToken = await ProfessionalUtils.getToken({
-    //   email: professionalManager.email,
-    //   password: professionalManager.password,
-    // });
+//     // await ProfessionalUtils.createProfissional(professionalManager);
+//     await ProfessionalUtils.createProfissional(professionalStaff);
+//     await ProfessionalUtils.createProfissional(professionalOperator);
 
-    staffToken = await ProfessionalUtils.getToken({
-      email: professionalStaff.email,
-      password: professionalStaff.password,
-    });
+//     // managerToken = await ProfessionalUtils.getToken({
+//     //   email: professionalManager.email,
+//     //   password: professionalManager.password,
+//     // });
 
-    operatorToken = await ProfessionalUtils.getToken({
-      email: professionalOperator.email,
-      password: professionalOperator.password,
-    });
-  });
+//     staffToken = await ProfessionalUtils.getToken({
+//       email: professionalStaff.email,
+//       password: professionalStaff.password,
+//     });
 
-  afterAll(async () => {
-    // const deleteSchedules = prismaClient.schedule.deleteMany();
-    const deletePatients = prismaClient.patient.deleteMany();
-    const deleteProfessionals = prismaClient.professionals.deleteMany();
+//     operatorToken = await ProfessionalUtils.getToken({
+//       email: professionalOperator.email,
+//       password: professionalOperator.password,
+//     });
+//   });
 
-    await prismaClient.$transaction([
-      // deleteSchedules,
-      deletePatients,
-      deleteProfessionals,
-    ]);
+//   afterAll(async () => {
+//     // const deleteSchedules = prismaClient.schedule.deleteMany();
+//     const deletePatients = prismaClient.patient.deleteMany();
+//     const deleteProfessionals = prismaClient.professionals.deleteMany();
 
-    await prismaClient.$disconnect();
-  });
+//     await prismaClient.$transaction([
+//       // deleteSchedules,
+//       deletePatients,
+//       deleteProfessionals,
+//     ]);
 
-  it("should register a patient if all data is valid and user has authorization", async () => {
-    const patient = PatientUtils.data.patient1;
+//     await prismaClient.$disconnect();
+//   });
 
-    const createRes = await request(app)
-      .post("/patients")
-      .send(patient)
-      .auth(staffToken, { type: "bearer" });
+//   it("should register a patient if all data is valid and user has authorization", async () => {
+//     const patient = PatientUtils.data.patient1;
 
-    console.log(createRes.body);
+//     const createRes = await request(app)
+//       .post("/patients")
+//       .send(patient)
+//       .auth(staffToken, { type: "bearer" });
 
-    expect(createRes.status).toBe(201);
-    expect(createRes.body.data).toEqual(
-      expect.objectContaining({
-        id: createRes.body.data.id,
-        name: patient.name,
-        medical_records_number: patient.medical_records_number,
-        contact: patient.contact,
-      })
-    );
-  });
-});
+//     console.log(createRes.body);
+
+//     expect(createRes.status).toBe(201);
+//     expect(createRes.body.data).toEqual(
+//       expect.objectContaining({
+//         id: createRes.body.data.id,
+//         name: patient.name,
+//         medical_records_number: patient.medical_records_number,
+//         contact: patient.contact,
+//       })
+//     );
+//   });
+// });
+

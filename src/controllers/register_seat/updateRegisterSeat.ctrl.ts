@@ -21,7 +21,7 @@ export class UpdateRegisterSeatController {
         registerSeatData
       );
 
-      return res.status(201).json({
+      return res.status(200).json({
         message: "Checkout Successfully updated",
       });
     } catch (error) {

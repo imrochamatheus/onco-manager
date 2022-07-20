@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../client";
 
 const checkIfProtocolExists = async (
   req: Request,
@@ -8,7 +8,6 @@ const checkIfProtocolExists = async (
 ) => {
   let id = Number(req.params.id);
   const data = req.body;
-  const prisma = new PrismaClient();
 
   if (!id && data.id_protocol) {
     id = data.id_protocol;

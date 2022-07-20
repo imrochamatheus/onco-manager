@@ -5,12 +5,14 @@ import {
   IProfessionalCredentials,
   IProfessionalDisplay,
 } from "../../../interfaces/professionals.interface";
+import AppError from "../../../errors/AppError";
+import { prisma } from "../../../client";
 
 class ProfessionalRepository implements IProfessionalRepository {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
 
   async create(
@@ -50,12 +52,15 @@ class ProfessionalRepository implements IProfessionalRepository {
   async getProfessionalByEmail(
     email: string
   ): Promise<IProfessionalCredentials | null> {
-    const professional = await this.prisma.professionals.findUniqueOrThrow({
+    const professional = await this.prisma.professionals.findUnique({
       where: {
         email,
       },
     });
 
+    if (!professional) {
+      throw new AppError("No professional found", 401);
+    }
     return professional;
   }
 

@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node dist/src/index.js",
     "build": "tsc",
-    "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/index.ts",
+    "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "test": "yarn docker:up && yarn prisma migrate deploy && jest -i"
+    "test": "dotenv -e .env.test -- yarn docker:up && npx prisma migrate dev && jest -i"
   },
   "repository": {
     "type": "git",

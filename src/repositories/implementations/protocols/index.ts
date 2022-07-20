@@ -1,3 +1,4 @@
+import { prisma } from "../../../client";
 import { PrismaClient } from "@prisma/client";
 import AppError from "../../../errors/AppError";
 import {
@@ -11,7 +12,7 @@ class ProtocolsRepository implements IProtocolReposity {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
 
   async createProtocol({

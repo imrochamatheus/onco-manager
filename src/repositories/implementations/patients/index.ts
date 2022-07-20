@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../client";
 import {
   IPatient,
   IPatientByIdReq,
@@ -10,7 +11,7 @@ class PatientRepository implements IPatientRepository {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
   async getPatientByMedicalRecordsNumber(
     medical_records_number: string
