@@ -114,13 +114,11 @@ describe("CRUD - /protocols", () => {
       const login = await request(app).post("/login").send({ email, password });
 
       const { token } = login.body;
-
       const resp = await request(app)
-        .get(`/protcols ${id}`)
+        .get(`/protocols/${id}`)
         .set("Authorization", `Bearer ${token}`);
-
       expect(resp.status).toBe(200);
-      expect(Array.isArray(resp.body)).toBe(true);
+      expect(resp.body).toHaveProperty("id");
     });
 
     it("Should not get  one protocol without authorization token", async () => {
