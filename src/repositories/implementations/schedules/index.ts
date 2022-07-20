@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../client";
 import AppError from "../../../errors/AppError";
 import {
   ISchedule,
@@ -13,7 +14,7 @@ class ScheduleRepository implements IScheduleRepository {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
 
   public async createSchedule({
