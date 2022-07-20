@@ -139,11 +139,10 @@ describe("CRUD - /seats", () => {
 
       expect(resp.status).toBe(401);
       expect(resp.body).toHaveProperty("message");
-    });
-
-    it("Should not delete a seat without authorization token", async () => {
-      const resp = await request(app).get("/seats");
-
+    });        
+    it('Should not delete a seat without authorization token', async () => {
+      const resp = await request(app)
+        .delete('/seats')
       expect(resp.status).toBe(401);
       expect(resp.body).toHaveProperty("message");
     });
