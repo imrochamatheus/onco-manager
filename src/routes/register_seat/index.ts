@@ -14,7 +14,6 @@ const registerSeatRouter = Router();
 
 registerSeatRouter.post(
   "/register_seat",
-  authorizarionMiddleware(["master", "staff"]),
   (req: Request, res: Response, next: NextFunction) => {
     createRegisterSeatController.handle(req, res, next);
   }
@@ -37,7 +36,6 @@ registerSeatRouter.get(
 
 registerSeatRouter.patch(
   "/:id_register_seat/checkout",
-  authorizarionMiddleware(["master", "staff", "operator"]),
   schemaValidation(registerSeatPatchSchema),
   (req: Request, res: Response, next: NextFunction) => {
     updateRegisterSeatController.handle(req, res, next);
