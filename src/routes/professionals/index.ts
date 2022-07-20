@@ -16,12 +16,17 @@ import authorizarionMiddleware from "../../middlewares/authorization.mdw";
 
 const professionalsRouter = Router();
 
-professionalsRouter.get("/", (req: Request, res: Response) => {
-  listAllProfessionalController.handle(req, res);
-});
+professionalsRouter.get(
+  "/",
+  authorizarionMiddleware(["master", "staff"]),
+  (req: Request, res: Response) => {
+    listAllProfessionalController.handle(req, res);
+  }
+);
 
 professionalsRouter.get(
   "/:id",
+  authorizarionMiddleware(["master", "staff"]),
   (req: Request, res: Response, next: NextFunction) => {
     getProfessionalByIdController.handle(req, res, next);
   }
@@ -29,7 +34,7 @@ professionalsRouter.get(
 
 professionalsRouter.post(
   "/",
-  // authorizarionMiddleware(["master"]),
+  authorizarionMiddleware(["master"]),
   schemaValidation(professionalSchema),
   (req: Request, res: Response, next: NextFunction) => {
     createProfessionalController.handle(req, res, next);
@@ -48,6 +53,7 @@ professionalsRouter.patch(
 
 professionalsRouter.delete(
   "/:id",
+  authorizarionMiddleware(["master"]),
   checkIfProfessionalExists,
   (req: Request, res: Response, next: NextFunction) => {
     deleteProfessionalController.handle(req, res, next);

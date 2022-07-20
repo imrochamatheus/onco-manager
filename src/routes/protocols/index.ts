@@ -6,18 +6,24 @@ import {
   listProtocolsController,
   patchProtocolByIdController,
 } from "../../controllers/protocols";
+import authorizarionMiddleware from "../../middlewares/authorization.mdw";
 import checkIfProtocolExists from "../../middlewares/checkIfProtocolExists.mdw";
 import schemaValidation from "../../middlewares/schemaValidation.mdw";
 import { protocolSchema, protocolPatchSchema } from "../../schemas/protocol";
 
 const protocolsRouter = Router();
 
-protocolsRouter.get("/", (req: Request, res: Response) => {
-  listProtocolsController.handle(req, res);
-});
+protocolsRouter.get(
+  "/",
+  authorizarionMiddleware(["master", "staff", "operator"]),
+  (req: Request, res: Response) => {
+    listProtocolsController.handle(req, res);
+  }
+);
 
 protocolsRouter.get(
   "/:id",
+  authorizarionMiddleware(["master", "staff", "operator"]),
   checkIfProtocolExists,
   (req: Request, res: Response, next: NextFunction) => {
     getProtocolById.handle(req, res, next);
@@ -26,6 +32,7 @@ protocolsRouter.get(
 
 protocolsRouter.patch(
   "/:id",
+  authorizarionMiddleware(["master", "staff"]),
   checkIfProtocolExists,
   schemaValidation(protocolPatchSchema),
   (req: Request, res: Response, next: NextFunction) => {
@@ -35,6 +42,7 @@ protocolsRouter.patch(
 
 protocolsRouter.delete(
   "/:id",
+  authorizarionMiddleware(["master", "staff"]),
   checkIfProtocolExists,
   (req: Request, res: Response, next: NextFunction) => {
     deleteProtocolController.handle(req, res, next);
@@ -43,6 +51,7 @@ protocolsRouter.delete(
 
 protocolsRouter.post(
   "/",
+  authorizarionMiddleware(["master", "staff"]),
   schemaValidation(protocolSchema),
   (req: Request, res: Response, next: NextFunction) => {
     createProtocolController.handle(req, res, next);
