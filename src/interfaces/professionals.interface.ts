@@ -44,6 +44,7 @@ interface IProfessionalCredentials
 
 export {
   Access,
+  Occupation,
   IProfessional,
   IProfessionalCreate,
   IProfessionalDisplay,
