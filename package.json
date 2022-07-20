@@ -9,7 +9,7 @@
     "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/index.ts",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "test": "yarn docker:up && yarn prisma migrate deploy && jest -i"
+    "test": "dotenv -e .env.test -- yarn docker:up && npx prisma migrate dev && jest -i"
   },
   "repository": {
     "type": "git",
