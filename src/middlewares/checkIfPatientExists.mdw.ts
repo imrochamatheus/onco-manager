@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
-
+import { prisma } from "../client";
 const checkIfPatientExistsMw = async (
   req: Request,
   res: Response,
@@ -8,7 +7,6 @@ const checkIfPatientExistsMw = async (
 ) => {
   let { patient_id } = req.params;
   const data = req.body;
-  const prisma = new PrismaClient();
 
   if (!patient_id && data.id_patient) {
     patient_id = data.id_patient;

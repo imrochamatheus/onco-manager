@@ -1,13 +1,11 @@
-import { PrismaClient } from "@prisma/client";
+import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
+import { ProfessionalUtils } from "../../utils/professional.util";
+import { PatientUtils } from "../../utils/patient.util";
+import { prisma } from "../../../client";
 import request from "supertest";
 import app from "../../..";
-import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
-import { PatientUtils } from "../../utils/patient.util";
-import { ProfessionalUtils } from "../../utils/professional.util";
 
 describe("POST - /patients", () => {
-  const prismaClient = new PrismaClient();
-
   // let professionalManager: IProfessionalCreate;
   let professionalStaff: IProfessionalCreate;
   let professionalOperator: IProfessionalCreate;
@@ -17,7 +15,7 @@ describe("POST - /patients", () => {
   let operatorToken: string;
 
   beforeAll(async () => {
-    await prismaClient.$connect();
+    await prisma.$connect();
 
     // professionalManager = ProfessionalUtils.data.manager;
     professionalStaff = ProfessionalUtils.data.staff;
@@ -45,16 +43,16 @@ describe("POST - /patients", () => {
 
   afterAll(async () => {
     // const deleteSchedules = prismaClient.schedule.deleteMany();
-    const deletePatients = prismaClient.patient.deleteMany();
-    const deleteProfessionals = prismaClient.professionals.deleteMany();
+    const deletePatients = prisma.patient.deleteMany();
+    const deleteProfessionals = prisma.professionals.deleteMany();
 
-    await prismaClient.$transaction([
+    await prisma.$transaction([
       // deleteSchedules,
       deletePatients,
       deleteProfessionals,
     ]);
 
-    await prismaClient.$disconnect();
+    await prisma.$disconnect();
   });
 
   it("should register a patient if all data is valid and user has authorization", async () => {
@@ -64,8 +62,6 @@ describe("POST - /patients", () => {
       .post("/patients")
       .send(patient)
       .auth(staffToken, { type: "bearer" });
-
-    console.log(createRes.body);
 
     expect(createRes.status).toBe(201);
     expect(createRes.body.data).toEqual(

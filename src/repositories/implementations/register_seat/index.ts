@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../client";
 import { IPatientByIdReq } from "../../../interfaces/patient.interface";
 import {
   IRegisterSeatCreate,
@@ -6,14 +7,13 @@ import {
   IRegisterSeatDate,
   IRegisterSeatUpdate,
 } from "../../../interfaces/registerSeat.interface";
-
 import { IRegisterSeatRepository } from "./IRegisterSeatRepository";
 
 class RegisterSeatRepository implements IRegisterSeatRepository {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
 
   public async createRegisterSeat({
