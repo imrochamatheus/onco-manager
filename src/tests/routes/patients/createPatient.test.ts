@@ -65,8 +65,6 @@ describe("POST - /patients", () => {
       .send(patient)
       .auth(staffToken, { type: "bearer" });
 
-    console.log(createRes.body);
-
     expect(createRes.status).toBe(201);
     expect(createRes.body.data).toEqual(
       expect.objectContaining({
