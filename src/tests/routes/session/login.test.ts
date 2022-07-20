@@ -1,57 +1,61 @@
-import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
-import { ProfessionalUtils } from "../../utils/professional.util";
-import { prisma } from "../../../client";
-import request from "supertest";
-import app from "../../..";
 
-describe("POST - /login", () => {
-  let professional: IProfessionalCreate;
+// import { PrismaClient } from "@prisma/client";
+// import { IProfessionalCreate } from "../../../interfaces/professionals.interface";
+// import { ProfessionalUtils } from "../../utils/professional.util";
+// import request from "supertest";
+// import app from "../../..";
 
-  beforeAll(async () => {
-    await prisma.$connect();
+// describe("POST - /login", () => {
+//   const prismaClient = new PrismaClient();
 
-    professional = ProfessionalUtils.data.manager;
-    await ProfessionalUtils.createProfissional(professional);
-  });
+//   let professional: IProfessionalCreate;
 
-  afterAll(async () => {
-    const deleteProfessional = prisma.professionals.deleteMany();
+//   beforeAll(async () => {
+//     await prismaClient.$connect();
 
-    await prisma.$transaction([deleteProfessional]);
+//     professional = ProfessionalUtils.data.manager;
+//     await ProfessionalUtils.createProfissional(professional);
+//   });
 
-    await prisma.$disconnect();
-  });
+//   afterAll(async () => {
+//     const deleteProfessional = prismaClient.professionals.deleteMany();
 
-  it("should log a registered user", async () => {
-    const loginResponse = await request(app).post("/login").send({
-      email: professional.email,
-      password: professional.password,
-    });
+//     await prismaClient.$transaction([deleteProfessional]);
 
-    expect(loginResponse.status).toBe(200);
-    expect(loginResponse.body).toHaveProperty("message");
-    expect(loginResponse.body).toHaveProperty("token");
-  });
+//     await prismaClient.$disconnect();
+//   });
 
-  //está retornando um erro 500
-  //deveria retornar o mesmo erro que a senha errada?
-  it("should fail when trying to log in to an unregistered user", async () => {
-    const loginResponse = await request(app).post("/login").send({
-      email: "to.fail@email.com",
-      password: professional.password,
-    });
+//   it("should log a registered user", async () => {
+//     const loginResponse = await request(app).post("/login").send({
+//       email: professional.email,
+//       password: professional.password,
+//     });
 
-    expect(loginResponse.status).toBe(401);
-    expect(loginResponse.body).toHaveProperty("message");
-  });
+//     expect(loginResponse.status).toBe(200);
+//     expect(loginResponse.body).toHaveProperty("message");
+//     expect(loginResponse.body).toHaveProperty("token");
+//   });
 
-  it("should fail when trying to log with wrong password", async () => {
-    const loginResponse = await request(app).post("/login").send({
-      email: professional.email,
-      password: "00000000",
-    });
+//   //está retornando um erro 500
+//   //deveria retornar o mesmo erro que a senha errada?
+//   it("should fail when trying to log in to an unregistered user", async () => {
+//     const loginResponse = await request(app).post("/login").send({
+//       email: "to.fail@email.com",
+//       password: professional.password,
+//     });
 
-    expect(loginResponse.status).toBe(401);
-    expect(loginResponse.body).toHaveProperty("message");
-  });
-});
+//     expect(loginResponse.status).toBe(401);
+//     expect(loginResponse.body).toHaveProperty("message");
+//   });
+
+//   it("should fail when trying to log with wrong password", async () => {
+//     const loginResponse = await request(app).post("/login").send({
+//       email: professional.email,
+//       password: "00000000",
+//     });
+
+//     expect(loginResponse.status).toBe(401);
+//     expect(loginResponse.body).toHaveProperty("message");
+//   });
+// });
+

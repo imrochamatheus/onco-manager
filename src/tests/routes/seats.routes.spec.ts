@@ -1,42 +1,45 @@
-import { IProfessional } from "../../interfaces/professionals.interface";
-import { prisma } from "../../client";
-import request from "supertest";
-import bcrypt from "bcrypt";
-import app from "../..";
+// import { ISeatCreate } from "../../interfaces/seats.interfaces";
+// import { PrismaClient } from "@prisma/client";
+// import { IProfessional } from "../../interfaces/professionals.interface";
+// import request from "supertest";
+// import bcrypt from "bcrypt";
+// import app from "../..";
 
-let professional: IProfessional;
+// const prisma = new PrismaClient();
 
-describe("Login tests", function () {
-  beforeAll(async () => {
-    await prisma.$connect();
+// let professional: IProfessional;
 
-    professional = await prisma.professionals.create({
-      data: {
-        full_name: "Silvia",
-        password: bcrypt.hashSync("12345678", 10),
-        occupation: "manager",
-        access_level: "master",
-        email: "admin@admin.com",
-        cartao_nacional_saude: "400489221254879",
-      },
-    });
-  });
+// describe("Login tests", function () {
+//   beforeAll(async () => {
+//     await prisma.$connect();
 
-  afterAll(async () => {
-    const deleteProfessional = prisma.professionals.deleteMany();
+//     professional = await prisma.professionals.create({
+//       data: {
+//         full_name: "Silvia",
+//         password: bcrypt.hashSync("12345678", 10),
+//         occupation: "manager",
+//         access_level: "master",
+//         email: "admin@admin.com",
+//         cartao_nacional_saude: "400489221254879",
+//       },
+//     });
+//   });
 
-    await prisma.$transaction([deleteProfessional]);
-    await prisma.$disconnect();
-  });
+//   afterAll(async () => {
+//     const deleteProfessional = prisma.professionals.deleteMany();
 
-  it("login", async () => {
-    const loginResponse = await request(app).post("/login").send({
-      email: professional.email,
-      password: "12345678",
-    });
+//     await prisma.$transaction([deleteProfessional]);
+//     await prisma.$disconnect();
+//   });
 
-    expect(loginResponse.status).toBe(200);
-    expect(loginResponse.body).toHaveProperty("message");
-    expect(loginResponse.body).toHaveProperty("token");
-  });
-});
+//   it("login", async () => {
+//     const loginResponse = await request(app).post("/login").send({
+//       email: professional.email,
+//       password: "12345678",
+//     });
+
+//     expect(loginResponse.status).toBe(200);
+//     expect(loginResponse.body).toHaveProperty("message");
+//     expect(loginResponse.body).toHaveProperty("token");
+//   });
+// });
